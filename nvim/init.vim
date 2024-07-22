@@ -40,47 +40,32 @@ set lazyredraw
 
 " set mouse=a
 
+" Must be located at the end of init.vim
+lua require('init')
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Plugin Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Load plugins when starting up
-set loadplugins
+" These settings go to init.lua
+"call plug#begin()
 
-filetype off                  " required
-
-call plug#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plug 'scrooloose/nerdtree'
-Plug 'majutsushi/tagbar'
+"Plug 'majutsushi/tagbar'
+"Plug 'nvim-tree/nvim-web-devicons' " OPTIONAL: for file icons
+"Plug 'lewis6991/gitsigns.nvim' " OPTIONAL: for git status
+"Plug 'romgrk/barbar.nvim'
 
 " All of your Plugins must be added before the following line
-call plug#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
-" Ease my eyes
-"colorscheme solarized
+" :PlugInstall to install the plugins
+" :PlugUpdate to install or update the plugins
+" :PlugDiff to review the changes from the last update
+" :PlugClean to remove plugins no longer in the list
+"call plug#end()
 
 " Set tagbar
-let g:tagbar_left = 1
-let g:tagbar_width = 30
-let g:tagbar_sort = 0
-
-" Set NERDTree position
-let g:NERDTreeWinPos='right'
+"let g:tagbar_left = 1
+"let g:tagbar_width = 30
+"let g:tagbar_sort = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -136,6 +121,11 @@ au BufReadPost *
 set colorcolumn=100
 highlight ColorColumn ctermbg=red
 let &colorcolumn="80,".join(range(100,100),",")
+
+" This makes trouble in visual block mode
+"set termguicolors
+
+set guicursor=
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -235,18 +225,11 @@ map <F11> :call Tj()<cr>
 " Step out of the function.
 map <F12> <c-T>
 
-" Move around buffers by pressing ctrl+h or ctrl+l
-map <C-h> :bprevious<cr>
-map <C-l> :bnext<cr>
-
 " Move between split windows
 map <S-h> :wincmd h<cr>
 map <S-l> :wincmd l<cr>
 map <S-k> :wincmd k<cr>
 map <S-j> :wincmd j<cr>
-
-" Save and close the buffer
-map ,w :bp <BAR> bd #<CR>
 
 " Format source codes by clang-format. To use this clang-format must be
 " installed.
@@ -268,3 +251,4 @@ map <leader>d :call ToggleNu()<CR>
 " you're done with pasting.
 map <leader>p :set invpaste paste?<CR>
 set pastetoggle=<leader>p
+

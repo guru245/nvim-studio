@@ -55,32 +55,21 @@ Vim studio has been tested on the following environments:
 
    Set `export TERM=xterm-256color` in .bashrc
 
-2. Install exuberant-ctags and global.
+2. Install [CaskaydiaCove](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/CascadiaCode.zip) fonts for glyphs.
 
-   * `apt install exuberant-ctags global`
-   * If you are used to building things from source,
-     [universal-ctags](https://github.com/universal-ctags/ctags) is recommended
-     instead of exuberant-ctags because exuberant-ctags is very old and is not
-     maintained.
-
-3. Install clang-format if you want. `apt install clang-format`
-
-4. Install [Cascadia Code](https://docs.microsoft.com/en-us/windows/terminal/cascadia-code)
-fonts for glyphs.
-
-   * Set the font by default to your terminal. For your reference, see
+   * Set CaskaydiaCoveNerdFontMono-Regular.ttf by default to your terminal. For your reference, see
    [Windows Terminal Powerline Setup | Microsoft Docs](https://docs.microsoft.com/en-us/windows/terminal/tutorials/powerline-setup)
-
+   
 5. Set up Vim config
 
    ```bash
    git clone --depth 1 --recurse-submodules https://github.com/guru245/nvim-studio.git [nvim-studio where you want]
-   Note https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
-   sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
    ln -s [nvim-studio]/nvim ~/.config/nvim/
+   Note https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
+   or
+   sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+   
    ```
-   
-   
 
 ## Usage
 
