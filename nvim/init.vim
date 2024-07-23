@@ -62,11 +62,6 @@ lua require('init')
 " :PlugClean to remove plugins no longer in the list
 "call plug#end()
 
-" Set tagbar
-"let g:tagbar_left = 1
-"let g:tagbar_width = 30
-"let g:tagbar_sort = 0
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Editing
@@ -204,7 +199,7 @@ map <F2> :w!<cr>
 map <F3> :TagbarToggle<cr>
 
 " Show a sidebar listing file system in tree view
-map <F4> :NERDTreeToggle<cr>
+"map <F4> :NERDTreeToggle<cr>
 
 " Fold/unfold a function body from brace to brace.
 map <F5> v]}zf
@@ -224,12 +219,6 @@ map <F11> :call Tj()<cr>
 
 " Step out of the function.
 map <F12> <c-T>
-
-" Move between split windows
-map <S-h> :wincmd h<cr>
-map <S-l> :wincmd l<cr>
-map <S-k> :wincmd k<cr>
-map <S-j> :wincmd j<cr>
 
 " Format source codes by clang-format. To use this clang-format must be
 " installed.
