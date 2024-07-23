@@ -6,7 +6,7 @@
 -- This is requested by nvim-tree.
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
---vim.opt.termguicolors = true
+vim.opt.termguicolors = true
 
 -----------------------
 -- Plugins
@@ -20,6 +20,7 @@ Plug('lewis6991/gitsigns.nvim')
 Plug('romgrk/barbar.nvim')
 Plug('nvim-tree/nvim-tree.lua')
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
+Plug('catppuccin/nvim', { ['as'] = 'catppuccin' })
 
 -- All of your Plugins must be added before the following line
 -- :PlugInstall to install the plugins
@@ -74,6 +75,7 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
+vim.cmd.colorscheme "catppuccin"
 
 -----------------------
 -- Mapping
