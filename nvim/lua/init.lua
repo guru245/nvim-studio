@@ -6,12 +6,11 @@
 -- This is requested by nvim-tree.
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
+--vim.opt.termguicolors = true
 
 -----------------------
 -- Plugins
 -----------------------
-local vim = vim
 local Plug = vim.fn['plug#']
 
 vim.call('plug#begin')
@@ -20,6 +19,7 @@ Plug('nvim-tree/nvim-web-devicons')
 Plug('lewis6991/gitsigns.nvim')
 Plug('romgrk/barbar.nvim')
 Plug('nvim-tree/nvim-tree.lua')
+Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 
 -- All of your Plugins must be added before the following line
 -- :PlugInstall to install the plugins
@@ -32,7 +32,6 @@ vim.call('plug#end')
 -----------------------
 -- Plugin Settings
 -----------------------
-
 local function my_on_attach(bufnr)
   local api = require "nvim-tree.api"
 
@@ -44,9 +43,9 @@ local function my_on_attach(bufnr)
   api.config.mappings.default_on_attach(bufnr)
 
   -- custom mappings
-  vim.keymap.set('n', '<F11>', api.tree.change_root_to_node,         opts('CD'))
-  vim.keymap.set('n', '<F12>',  api.tree.change_root_to_parent,        opts('Up'))
-  vim.keymap.set('n', '?',  api.tree.toggle_help,              opts('Help'))
+  vim.keymap.set('n', '<F11>', api.tree.change_root_to_node, opts('CD'))
+  vim.keymap.set('n', '<F12>',  api.tree.change_root_to_parent, opts('Up'))
+  vim.keymap.set('n', '?',  api.tree.toggle_help, opts('Help'))
 end
 
 require("nvim-tree").setup({
@@ -67,6 +66,13 @@ require("nvim-tree").setup({
   },
 })
 
+require'nvim-treesitter.configs'.setup {
+  auto_install = true,
+  hightlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+}
 
 
 -----------------------
@@ -90,3 +96,4 @@ map('n', ',w', '<Cmd>BufferClose<CR>', opts)
 
 map('n', '<F2>', '<Cmd>w!<CR>', opts)
 map('n', '<F4>', '<Cmd>NvimTreeToggle<CR>', opts)
+
