@@ -40,27 +40,21 @@ set lazyredraw
 
 " set mouse=a
 
-" Must be located at the end of init.vim
-lua require('init')
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Plugin Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " These settings go to init.lua
-"call plug#begin()
+call plug#begin()
 
 "Plug 'majutsushi/tagbar'
-"Plug 'nvim-tree/nvim-web-devicons' " OPTIONAL: for file icons
-"Plug 'lewis6991/gitsigns.nvim' " OPTIONAL: for git status
-"Plug 'romgrk/barbar.nvim'
 
 " All of your Plugins must be added before the following line
 " :PlugInstall to install the plugins
 " :PlugUpdate to install or update the plugins
 " :PlugDiff to review the changes from the last update
 " :PlugClean to remove plugins no longer in the list
-"call plug#end()
+call plug#end()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -241,3 +235,5 @@ map <leader>d :call ToggleNu()<CR>
 map <leader>p :set invpaste paste?<CR>
 set pastetoggle=<leader>p
 
+" Must be located at the end of init.vim
+lua require('init')

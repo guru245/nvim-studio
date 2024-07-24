@@ -73,7 +73,7 @@ Vim studio has been tested on the following environments:
    Note https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
    or
    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-   
+   nvim -es -u init.vim -i NONE -c "PlugInstall" -c "qa"
    ```
 
 ## Usage
