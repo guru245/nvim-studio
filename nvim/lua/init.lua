@@ -22,6 +22,9 @@ Plug('nvim-tree/nvim-tree.lua')
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 Plug('nvim-lualine/lualine.nvim')
 Plug('romgrk/barbar.nvim')
+Plug('williamboman/mason.nvim')
+Plug('williamboman/mason-lspconfig.nvim')
+Plug('neovim/nvim-lspconfig')
 
 -- All of your Plugins must be added before the following line
 -- :PlugInstall to install the plugins
@@ -79,6 +82,20 @@ require'nvim-treesitter.configs'.setup {
 vim.cmd.colorscheme "catppuccin"
 require("ibl").setup()
 require('lualine').setup()
+
+require("mason").setup()
+require("mason-lspconfig").setup {
+  ensure_installed = {
+    "lua_ls",
+    "clangd",
+    "rust_analyzer" },
+}
+require("lspconfig").lua_ls.setup {}
+require("lspconfig").bashls.setup {}
+require("lspconfig").clangd.setup {}
+require("lspconfig").cmake.setup {}
+require("lspconfig").pyright.setup {}
+require("lspconfig").rust_analyzer.setup {}
 
 -----------------------
 -- Mapping
