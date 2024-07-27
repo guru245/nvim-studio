@@ -89,20 +89,32 @@ require'nvim-treesitter.configs'.setup {
 vim.cmd.colorscheme "catppuccin"
 require("ibl").setup()
 require('lualine').setup()
-
 require("mason").setup()
-require("mason-lspconfig").setup {
-  ensure_installed = {
-    "lua_ls",
-    "clangd",
-    "rust_analyzer" },
+require("mason-lspconfig").setup()
+--require("lspconfig").setup {}
+
+-- Add additional capabilities supported by nvim-cmp
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+-- Enable some language servers with the additional completion capabilities offered by nvim-cmp
+local servers = {
+  'clangd',
+  'rust_analyzer',
+  'pyright',
+  'lua_ls',
+  'bashls',
+  'cmake',
 }
-require("lspconfig").lua_ls.setup {}
-require("lspconfig").bashls.setup {}
-require("lspconfig").clangd.setup {}
-require("lspconfig").cmake.setup {}
-require("lspconfig").pyright.setup {}
-require("lspconfig").rust_analyzer.setup {}
+local lspconfig = require('lspconfig')
+local on_attach = function(_, _)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
+end
+for _, lsp in ipairs(servers) do
+  lspconfig[lsp].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
+end
+
 local cmp = require("cmp")
 cmp.setup {
   snippet = {
@@ -117,6 +129,8 @@ cmp.setup {
   mapping = cmp.mapping.preset.insert({
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+      ['<Tab>'] = cmp.mapping.select_next_item(),
       ['<C-Space>'] = cmp.mapping.complete(),
       ['<C-e>'] = cmp.mapping.abort(),
       ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
@@ -146,6 +160,7 @@ cmp.setup.cmdline(':', {
   }),
   matching = { disallow_symbol_nonprefix_matching = false }
 })
+
 
 -----------------------
 -- Mapping
