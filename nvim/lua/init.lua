@@ -162,6 +162,12 @@ cmp.setup.cmdline(':', {
   matching = { disallow_symbol_nonprefix_matching = false }
 })
 
+-- Executive used when opening vista sidebar without specifying it.
+-- See all the avaliable executives via `:echo g:vista#executives`.
+vim.cmd("let g:vista_default_executive = 'nvim_lsp'")
+vim.cmd("let g:vista#renderer#enable_icon = 1")
+vim.cmd("let g:vista_sidebar_position = 'vertical topleft'")
+
 
 -----------------------
 -- Mapping

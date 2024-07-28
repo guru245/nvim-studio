@@ -42,29 +42,6 @@ set lazyredraw
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vim Plugin Settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" These settings go to init.lua
-call plug#begin()
-
-" Plug 'liuchengxu/vista.vim'
-
-" All of your Plugins must be added before the following line
-" :PlugInstall to install the plugins
-" :PlugUpdate to install or update the plugins
-" :PlugDiff to review the changes from the last update
-" :PlugClean to remove plugins no longer in the list
-call plug#end()
-
-
-" Executive used when opening vista sidebar without specifying it.
-" See all the avaliable executives via `:echo g:vista#executives`.
-let g:vista_default_executive = 'nvim_lsp'
-let g:vista#renderer#enable_icon = 1
-let g:vista_sidebar_position = 'vertical topleft'
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Editing
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tell Vim to delete the white space at the start of the line, a line break
