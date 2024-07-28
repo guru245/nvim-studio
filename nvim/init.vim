@@ -47,7 +47,7 @@ set lazyredraw
 " These settings go to init.lua
 call plug#begin()
 
-"Plug 'majutsushi/tagbar'
+" Plug 'liuchengxu/vista.vim'
 
 " All of your Plugins must be added before the following line
 " :PlugInstall to install the plugins
@@ -55,6 +55,13 @@ call plug#begin()
 " :PlugDiff to review the changes from the last update
 " :PlugClean to remove plugins no longer in the list
 call plug#end()
+
+
+" Executive used when opening vista sidebar without specifying it.
+" See all the avaliable executives via `:echo g:vista#executives`.
+let g:vista_default_executive = 'nvim_lsp'
+let g:vista#renderer#enable_icon = 1
+let g:vista_sidebar_position = 'vertical topleft'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -92,6 +99,8 @@ syntax on
 set background=dark
 "set background=light
 
+set guicursor=
+
 " Delete trailing spaces at eol when a file is saved.
 func! DeleteTrailingWS()
     exe "normal mz"
@@ -110,11 +119,6 @@ au BufReadPost *
 set colorcolumn=100
 highlight ColorColumn ctermbg=red
 let &colorcolumn="80,".join(range(100,100),",")
-
-" This makes trouble in visual block mode
-"set termguicolors
-
-set guicursor=
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -184,35 +188,15 @@ func! Man()
     let sm = expand("<cword>")
     exe "!man -S 2:3:4:5:6:7:8:9:tcl:n:1:p:o ".sm
 endfunc
-map <F1> :call Man()<cr><cr>
+map <F1> :call Man()<cr>g
 
 " Save
 map <F2> :w!<cr>
-
-" Show a sidebar listing defines, variables, and functions
-map <F3> :TagbarToggle<cr>
-
-" Show a sidebar listing file system in tree view
-"map <F4> :NERDTreeToggle<cr>
-
-" Fold/unfold a function body from brace to brace.
-map <F5> v]}zf
-map <F6> zo
 
 " Clear all markers
 map <F8> :MarkClear<cr> :noh<cr>
 "map <F8> [i
 "Map <F9> gd
-
-" Step into the function.
-func! Tj()
-    let st = expand("<cword>")
-    exe "tj ".st
-endfunc
-map <F11> :call Tj()<cr>
-
-" Step out of the function.
-map <F12> <c-T>
 
 " Format source codes by clang-format. To use this clang-format must be
 " installed.
