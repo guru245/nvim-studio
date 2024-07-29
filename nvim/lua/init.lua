@@ -33,6 +33,7 @@ Plug('romgrk/barbar.nvim')
 Plug('williamboman/mason.nvim')
 Plug('williamboman/mason-lspconfig.nvim')
 Plug('neovim/nvim-lspconfig')
+Plug('tpope/vim-fugitive')
 
 -- All of your Plugins must be added before the following line
 -- :PlugInstall to install the plugins
