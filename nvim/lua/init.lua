@@ -168,6 +168,37 @@ vim.cmd("let g:vista_default_executive = 'nvim_lsp'")
 vim.cmd("let g:vista#renderer#enable_icon = 1")
 vim.cmd("let g:vista_sidebar_position = 'vertical topleft'")
 
+require('gitsigns').setup{
+  numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
+  on_attach = function(bufnr)
+    local gitsigns = require('gitsigns')
+
+    local function map(mode, l, r, opts)
+      opts = opts or {}
+      opts.buffer = bufnr
+      vim.keymap.set(mode, l, r, opts)
+    end
+
+    -- Navigation
+    map('n', ']c', function()
+      if vim.wo.diff then
+        vim.cmd.normal({']c', bang = true})
+      else
+        gitsigns.nav_hunk('next')
+      end
+    end)
+
+    map('n', '[c', function()
+      if vim.wo.diff then
+        vim.cmd.normal({'[c', bang = true})
+      else
+        gitsigns.nav_hunk('prev')
+      end
+    end)
+
+  end
+}
+
 
 -----------------------
 -- Mapping
