@@ -24,7 +24,6 @@ Plug('hrsh7th/cmp-nvim-lsp')
 Plug('hrsh7th/nvim-cmp')
 Plug('hrsh7th/cmp-vsnip')
 Plug('hrsh7th/vim-vsnip')
-Plug('liuchengxu/vista.vim')
 Plug('nvim-tree/nvim-web-devicons')
 Plug('nvim-tree/nvim-tree.lua')
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
@@ -34,6 +33,7 @@ Plug('williamboman/mason.nvim')
 Plug('williamboman/mason-lspconfig.nvim')
 Plug('neovim/nvim-lspconfig')
 Plug('tpope/vim-fugitive')
+Plug('majutsushi/tagbar')
 
 -- All of your Plugins must be added before the following line
 -- :PlugInstall to install the plugins
@@ -93,7 +93,6 @@ require("ibl").setup()
 require('lualine').setup()
 require("mason").setup()
 require("mason-lspconfig").setup()
---require("lspconfig").setup {}
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -163,17 +162,10 @@ cmp.setup.cmdline(':', {
   matching = { disallow_symbol_nonprefix_matching = false }
 })
 
--- Executive used when opening vista sidebar without specifying it.
--- See all the avaliable executives via `:echo g:vista#executives`.
-vim.cmd("let g:vista_default_executive = 'nvim_lsp'")
-vim.cmd("let g:vista#renderer#enable_icon = 1")
-vim.cmd("let g:vista_sidebar_position = 'vertical topleft'")
-vim.cmd([[
-let g:vista_executive_for = {
-  \ 'make': 'ctags',
-  \ 'sh': 'ctags',
-  \ }
-  ]])
+vim.cmd("let g:tagbar_left = 1")
+vim.cmd("let g:tagbar_width = 30")
+vim.cmd("let g:tagbar_sort = 0")
+
 
 require('gitsigns').setup{
   numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
@@ -227,6 +219,6 @@ map('n', '<A-j>', '<Cmd>wincmd j<CR>', opts)
 map('n', ',w', '<Cmd>BufferClose<CR>', opts)
 
 map('n', '<F2>', '<Cmd>w!<CR>', opts)
-map('n', '<F3>', '<Cmd>Vista!!<CR>', opts)
+map('n', '<F3>', '<Cmd>:TagbarToggle<CR>', opts)
 map('n', '<F4>', '<Cmd>NvimTreeToggle<CR>', opts)
 
