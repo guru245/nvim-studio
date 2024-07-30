@@ -168,6 +168,12 @@ cmp.setup.cmdline(':', {
 vim.cmd("let g:vista_default_executive = 'nvim_lsp'")
 vim.cmd("let g:vista#renderer#enable_icon = 1")
 vim.cmd("let g:vista_sidebar_position = 'vertical topleft'")
+vim.cmd([[
+let g:vista_executive_for = {
+  \ 'make': 'ctags',
+  \ 'sh': 'ctags',
+  \ }
+  ]])
 
 require('gitsigns').setup{
   numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
