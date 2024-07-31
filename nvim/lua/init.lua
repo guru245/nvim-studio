@@ -94,6 +94,19 @@ require('lualine').setup()
 require("mason").setup()
 require("mason-lspconfig").setup()
 
+local border = 'single'
+-- Add border to the diagnostic popup window
+vim.diagnostic.config({
+    virtual_text = {
+        --prefix = '■ ', -- Could be '●', '▎', 'x', '■', , 
+    },
+    float = { border = border },
+})
+local handlers = {
+  ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+  ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+}
+require('lspconfig.ui.windows').default_options.border = border
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
@@ -113,6 +126,7 @@ for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
     capabilities = capabilities,
+    handlers = handlers
   }
 end
 
@@ -124,8 +138,8 @@ cmp.setup {
     end,
   },
   window = {
-      -- completion = cmp.config.window.bordered(),
-      -- documentation = cmp.config.window.bordered(),
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -165,7 +179,6 @@ cmp.setup.cmdline(':', {
 vim.cmd("let g:tagbar_left = 1")
 vim.cmd("let g:tagbar_width = 30")
 vim.cmd("let g:tagbar_sort = 0")
-
 
 require('gitsigns').setup{
   numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
