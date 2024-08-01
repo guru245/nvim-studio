@@ -65,7 +65,7 @@ Vim studio has been tested on the following environments:
 
    ```
    apt install fd-find
-   apt install ripgrep
+   apt install ripgrep, npm
    ```
 
    

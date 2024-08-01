@@ -116,7 +116,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local servers = {
   'clangd',
   'rust_analyzer',
-  'pyright',
+  'pylsp',
   'lua_ls',
   'bashls',
   'cmake',
