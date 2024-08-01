@@ -170,8 +170,6 @@ map <F1> :call Man()<cr>g
 " Save
 map <F2> :w!<cr>
 
-" Clear all markers
-map <F8> :MarkClear<cr> :noh<cr>
 "map <F8> [i
 "Map <F9> gd
 

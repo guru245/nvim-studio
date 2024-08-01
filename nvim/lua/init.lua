@@ -123,6 +123,7 @@ local servers = {
 }
 local lspconfig = require('lspconfig')
 local on_attach = function(_, _)
+  print("LSP started.")
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
 end
 for _, lsp in ipairs(servers) do
@@ -214,8 +215,7 @@ require('gitsigns').setup{
   end
 }
 
-require('telescope').setup {
-}
+require('telescope').setup {}
 
 
 -----------------------
@@ -240,4 +240,11 @@ map('n', ',w', '<Cmd>BufferClose<CR>', opts)
 map('n', '<F2>', '<Cmd>w!<CR>', opts)
 map('n', '<F3>', '<Cmd>:TagbarToggle<CR>', opts)
 map('n', '<F4>', '<Cmd>NvimTreeToggle<CR>', opts)
+map('n', '<F8>', '<Cmd>noh<CR>', opts)
 
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>cs', builtin.lsp_references, {})
+vim.keymap.set('n', '<leader>cc', builtin.lsp_incoming_calls, {})
+vim.keymap.set('n', '<leader>cd', builtin.lsp_type_definitions, {})
