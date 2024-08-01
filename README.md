@@ -51,19 +51,24 @@ Vim studio has been tested on the following environments:
 
 ## Installation
 
-1. Set up the terminal
-
-   Set `export TERM=xterm-256color` in .bashrc
-
-2. Install exuberant-ctags and global.
+1. Install exuberant-ctags and global.
 
    - `apt install exuberant-ctags global`
    - If you are used to building things from source, [universal-ctags](https://github.com/universal-ctags/ctags) is recommended instead of exuberant-ctags because exuberant-ctags is very old and is not maintained.
 
-3. Install [CaskaydiaCove](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/CascadiaCode.zip) fonts for glyphs.
+2. Install [CaskaydiaCove](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/CascadiaCode.zip) fonts for glyphs.
 
    * Set CaskaydiaCoveNerdFontMono-Regular.ttf by default to your terminal. For your reference, see
    [Windows Terminal Powerline Setup | Microsoft Docs](https://docs.microsoft.com/en-us/windows/terminal/tutorials/powerline-setup)
+
+3. d
+
+   ```
+   apt install fd-find
+   apt install ripgrep
+   ```
+
+   
 
 4. Set up Vim config
 
@@ -75,6 +80,15 @@ Vim studio has been tested on the following environments:
    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
    nvim -es -u init.vim -i NONE -c "PlugInstall" -c "qa"
    ```
+
+5. LSPInstall
+
+   ```
+   ssdsd
+   
+   ```
+
+   
 
 ## Usage
 

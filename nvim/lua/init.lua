@@ -33,6 +33,8 @@ Plug('williamboman/mason.nvim')
 Plug('williamboman/mason-lspconfig.nvim')
 Plug('neovim/nvim-lspconfig')
 Plug('tpope/vim-fugitive')
+Plug('nvim-lua/plenary.nvim')
+Plug('nvim-telescope/telescope.nvim', { ['tag'] = '0.1.8' })
 Plug('majutsushi/tagbar')
 
 -- All of your Plugins must be added before the following line
@@ -95,6 +97,7 @@ require("mason").setup()
 require("mason-lspconfig").setup()
 
 local border = 'single'
+vim.diagnostic.disable()
 -- Add border to the diagnostic popup window
 vim.diagnostic.config({
     virtual_text = {
@@ -209,6 +212,9 @@ require('gitsigns').setup{
     end)
 
   end
+}
+
+require('telescope').setup {
 }
 
 
