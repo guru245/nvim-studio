@@ -130,7 +130,9 @@ for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
     capabilities = capabilities,
-    handlers = handlers
+    handlers = handlers,
+    --root_dir = lspconfig.util.root_pattern('.git', vim.fn.getcwd()),
+    root_dir = lspconfig.util.root_pattern('.git'),
   }
 end
 
