@@ -236,15 +236,21 @@ map('n', '<A-j>', '<Cmd>wincmd j<CR>', opts)
 
 -- Save and close the buffer
 map('n', ',w', '<Cmd>BufferClose<CR>', opts)
-
 map('n', '<F2>', '<Cmd>w!<CR>', opts)
 map('n', '<F3>', '<Cmd>:TagbarToggle<CR>', opts)
 map('n', '<F4>', '<Cmd>NvimTreeToggle<CR>', opts)
 map('n', '<F8>', '<Cmd>noh<CR>', opts)
 
 local builtin = require('telescope.builtin')
+-- Lists files in your current working directory, respects .gitignore
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+-- Search for a string in your current working directory and get results live as you type
+vim.keymap.set('n', '<leader>lg', builtin.live_grep, {})
+-- Searches for the string under your cursor or selection in your current working directory
+vim.keymap.set('n', '<leader>gs', builtin.grep_string, {})
+-- Lists LSP references for word under the cursor
 vim.keymap.set('n', '<leader>cs', builtin.lsp_references, {})
+-- Lists LSP incoming calls for word under the cursor
 vim.keymap.set('n', '<leader>cc', builtin.lsp_incoming_calls, {})
+-- Goto the definition of the type of the word under the cursor
 vim.keymap.set('n', '<leader>cd', builtin.lsp_type_definitions, {})

@@ -167,12 +167,6 @@ func! Man()
 endfunc
 map <F1> :call Man()<cr>g
 
-" Save
-map <F2> :w!<cr>
-
-"map <F8> [i
-"Map <F9> gd
-
 " Format source codes by clang-format. To use this clang-format must be
 " installed.
 map <C-K> :py3f ~/.vim/clang-format.py<cr>
