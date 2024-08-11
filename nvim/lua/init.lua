@@ -97,7 +97,7 @@ require("mason").setup()
 require("mason-lspconfig").setup()
 
 local border = 'single'
-vim.diagnostic.disable()
+-- vim.diagnostic.disable()
 -- Add border to the diagnostic popup window
 vim.diagnostic.config({
     virtual_text = {
@@ -185,7 +185,7 @@ vim.cmd("let g:tagbar_left = 1")
 vim.cmd("let g:tagbar_width = 30")
 vim.cmd("let g:tagbar_sort = 0")
 
-require('gitsigns').setup{
+require('gitsigns').setup {
   numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
   on_attach = function(bufnr)
     local gitsigns = require('gitsigns')
@@ -242,16 +242,18 @@ map('n', '<F3>', '<Cmd>:TagbarToggle<CR>', opts)
 map('n', '<F4>', '<Cmd>NvimTreeToggle<CR>', opts)
 map('n', '<F8>', '<Cmd>noh<CR>', opts)
 
+map('n', '<leader>cf', ":execute 'Telescope find_files default_text=' . expand('<cword>')<CR>", opts)
+
 local builtin = require('telescope.builtin')
 -- Lists files in your current working directory, respects .gitignore
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 -- Search for a string in your current working directory and get results live as you type
 vim.keymap.set('n', '<leader>lg', builtin.live_grep, {})
 -- Searches for the string under your cursor or selection in your current working directory
-vim.keymap.set('n', '<leader>gs', builtin.grep_string, {})
+vim.keymap.set('n', '<leader>ct', builtin.grep_string, {})
 -- Lists LSP references for word under the cursor
 vim.keymap.set('n', '<leader>cs', builtin.lsp_references, {})
 -- Lists LSP incoming calls for word under the cursor
 vim.keymap.set('n', '<leader>cc', builtin.lsp_incoming_calls, {})
 -- Goto the definition of the type of the word under the cursor
-vim.keymap.set('n', '<leader>cd', builtin.lsp_type_definitions, {})
+vim.keymap.set('n', '<leader>cg', builtin.lsp_type_definitions, {})

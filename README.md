@@ -1,6 +1,6 @@
 # NVIM Studio
 
-Can we turn Vim into an IDE? Yes, we can. It works even better and faster than
+Are you still using Vim?Can we turn Vim into an IDE? Yes, we can. It works even better and faster than
 any traditional IDE. Let's dive right in.
 
 ![overview](./.imgs/overview.png)
@@ -20,33 +20,20 @@ any traditional IDE. Let's dive right in.
 
 * Git wrapper works with Git without leaving Vim studio.
 
-* Marker highlights several words in different colors.
-
-  ![maker](./.imgs/mark.png)
-
 * Auto completion opens a popup menu to complete using tab
 
   ![auto completion](./.imgs/autocomp.gif)
 
-* Automatic index searches and browses source code thanks to Gutentags.
-  Without Gutentags, whenever you modify code, tags must be up-to-date
-  MANUALLY. Yuck!
-
-* [Clang-format](https://clang.llvm.org/docs/ClangFormat.html) integration
-  formats code with the desired style.
-
-* Vim-airline shows you nice glyphs.
-
-  ![auto completion](./.imgs/airline_demo.gif)
-
-* For more features, see [.vimrc](./.vimrc)
+* Automatic index searches and browses source code thanks to lsp
+  
+* [Clang-format](https://clang.llvm.org/docs/ClangFormat.html) integration formats code with the desired style.
 
 ## Environment
 
-Vim studio has been tested on the following environments:
+NVIM studio has been tested on the following environments:
 
 * Ubuntu 18.04 or above, Fedora 24, and WSL2
-* Vim 8.0+
+* Neovim 9.0
 * [Windows Terminal](https://docs.microsoft.com/en-us/windows/terminal/get-started)
 
 ## Installation
@@ -65,7 +52,8 @@ Vim studio has been tested on the following environments:
 
    ```
    apt install fd-find
-   apt install ripgrep, npm
+   ln -s $(which fdfind) ~/.local/bin/fd
+   apt install ripgrep, npm, libjansson-dev
    ```
 
    
@@ -155,16 +143,6 @@ Or you can use the following keymaps:
 ## Powered by:
 
 * [Vundle.vim](https://github.com/VundleVim/Vundle.vim)
-* [Vim-fugitive](https://github.com/tpope/vim-fugitive)
-* [Vim-unimpaired](https://github.com/tpope/vim-unimpaired)
-* [NERDtree](https://github.com/scrooloose/nerdtree)
-* [Tagbar](https://github.com/majutsushi/tagbar)
-* [Vim-airline](https://github.com/vim-airline/vim-airline)
-* [Vim-airline-themes](https://github.com/vim-airline/vim-airline-themes)
-* [Vim-ingo-library](https://github.com/inkarkat/vim-ingo-library)
-* [Vim-mark](https://github.com/inkarkat/vim-mark)
-* [Clang-format](https://clang.llvm.org/docs/ClangFormat.html)
-* [Supertab](https://github.com/ervandew/supertab)
-* [Vim-gutentags](https://github.com/ludovicchabant/vim-gutentags)
+* 
 * [Gutentags_plus](https://github.com/skywind3000/gutentags_plus)
 
