@@ -242,8 +242,6 @@ map('n', '<F3>', '<Cmd>:TagbarToggle<CR>', opts)
 map('n', '<F4>', '<Cmd>NvimTreeToggle<CR>', opts)
 map('n', '<F8>', '<Cmd>noh<CR>', opts)
 
-map('n', '<leader>cf', ":execute 'Telescope find_files default_text=' . expand('<cword>')<CR>", opts)
-
 local builtin = require('telescope.builtin')
 -- Lists files in your current working directory, respects .gitignore
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
