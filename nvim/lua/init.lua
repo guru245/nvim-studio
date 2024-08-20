@@ -6,7 +6,7 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
-vim.api.nvim_set_option("clipboard", "unnamedplus")
+vim.opt.clipboard:append('unnamedplus')
 
 -----------------------
 -- Plugins
@@ -37,6 +37,7 @@ Plug('tpope/vim-fugitive')
 Plug('nvim-lua/plenary.nvim')
 Plug('nvim-telescope/telescope.nvim', { ['tag'] = '0.1.8' })
 Plug('majutsushi/tagbar')
+Plug('ayuanx/vim-mark-standalone')
 
 -- All of your Plugins must be added before the following line
 -- :PlugInstall to install the plugins
@@ -218,6 +219,7 @@ require('gitsigns').setup {
 }
 
 require('telescope').setup {}
+vim.cmd("let g:mwDefaultHighlightingPalette = 'maximum'")
 
 
 -----------------------
@@ -241,7 +243,7 @@ map('n', ',w', '<Cmd>BufferClose<CR>', opts)
 map('n', '<F2>', '<Cmd>w!<CR>', opts)
 map('n', '<F3>', '<Cmd>:TagbarToggle<CR>', opts)
 map('n', '<F4>', '<Cmd>NvimTreeToggle<CR>', opts)
-map('n', '<F8>', '<Cmd>noh<CR>', opts)
+map('n', '<F8>', '<Cmd>MarkClear<CR><Cmd>noh<CR>', opts)
 
 local builtin = require('telescope.builtin')
 -- Lists files in your current working directory, respects .gitignore
