@@ -25,7 +25,7 @@ any traditional IDE. Let's dive right in.
   ![auto completion](./.imgs/autocomp.gif)
 
 * Automatic index searches and browses source code thanks to lsp
-  
+
 * [Clang-format](https://clang.llvm.org/docs/ClangFormat.html) integration formats code with the desired style.
 
 ## Environment
@@ -56,7 +56,7 @@ NVIM studio has been tested on the following environments:
    apt install ripgrep, npm, libjansson-dev
    ```
 
-   
+
 
 4. Set up Vim config
 
@@ -73,10 +73,10 @@ NVIM studio has been tested on the following environments:
 
    ```
    ssdsd
-   
+
    ```
 
-   
+
 
 ## Usage
 
@@ -90,14 +90,10 @@ check out [Vim help](http://vimdoc.sourceforge.net/htmldoc/help.html) or
 * F2: Save the current file
 * F3: Toggle tagbar, source code browser on the left side
 * F4: Toggle NERDTree, file system explorer on the right side
-* F5: Fold a function body
-* F6: Unfold a function body
 * F7: Empty
 * F8: Clear all marks
 * F9: Empty
 * F10: Empty
-* F11: Step into the function.
-* F12: Step out of the function.
 * `ctrl+h`, `ctrl+l`: Go to the tab on the left/right
 * `shift+h`, `shift+l`, `shift+k`, `shift+j`:  Move between split windows
 * `,w`: Save and close the current file. *Well~ we call it buffer in Vim*
@@ -112,37 +108,17 @@ To perform cscope searching, use `:GscopeFind {querytype} {name}`. Where
 `{querytype}` corresponds to the actual cscope line interface numbers as
 well as default nvi commands:
 
-```
-0 or s: Find this symbol
-1 or g: Find this definition
-2 or d: Find functions called by this function
-3 or c: Find functions calling this function
-4 or t: Find this text string
-6 or e: Find this egrep pattern
-7 or f: Find this file
-8 or i: Find files #including this file
-9 or a: Find places where this symbol is assigned a value
-```
-
 Or you can use the following keymaps:
 
 | keymap | desc |
 |--------|------|
 | `<leader>cs` | Find symbol (reference) under cursor |
 | `<leader>cg` | Find symbol definition under cursor |
-| `<leader>cd` | Functions called by this function |
 | `<leader>cc` | Functions calling this function |
 | `<leader>ct` | Find text string under cursor |
-| `<leader>ce` | Find egrep pattern under cursor |
-| `<leader>cf` | Find file name under cursor |
-| `<leader>ci` | Find files #including the file name under cursor |
-| `<leader>ca` | Find places where current symbol is assigned |
-| `<leader>cz` | Find current word in ctags database |
 
 
 ## Powered by:
 
 * [Vundle.vim](https://github.com/VundleVim/Vundle.vim)
-* 
-* [Gutentags_plus](https://github.com/skywind3000/gutentags_plus)
 

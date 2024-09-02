@@ -38,6 +38,7 @@ Plug('nvim-lua/plenary.nvim')
 Plug('nvim-telescope/telescope.nvim', { ['tag'] = '0.1.8' })
 Plug('majutsushi/tagbar')
 Plug('ayuanx/vim-mark-standalone')
+Plug('mfussenegger/nvim-lint')
 
 -- All of your Plugins must be added before the following line
 -- :PlugInstall to install the plugins
@@ -220,6 +221,20 @@ require('gitsigns').setup {
 
 require('telescope').setup {}
 vim.cmd("let g:mwDefaultHighlightingPalette = 'maximum'")
+
+require('lint').linters_by_ft = {
+  c = {'clangtidy',},
+  cpp = {'clangtidy',},
+}
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+  callback = function()
+
+    -- try_lint without arguments runs the linters defined in `linters_by_ft`
+    -- for the current filetype
+    require("lint").try_lint()
+  end,
+})
 
 
 -----------------------

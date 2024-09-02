@@ -72,10 +72,6 @@ set startofline
 " Turn on syntax highlighting
 syntax on
 
-" Whatever floats in your boat
-set background=dark
-"set background=light
-
 set guicursor=
 
 " Delete trailing spaces at eol when a file is saved.
@@ -160,27 +156,9 @@ set matchpairs+=<:>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shortcuts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Show the man page when you press F1
-func! Man()
-    let sm = expand("<cword>")
-    exe "!man -S 2:3:4:5:6:7:8:9:tcl:n:1:p:o ".sm
-endfunc
-map <F1> :call Man()<cr>g
-
-" Format source codes by clang-format. To use this clang-format must be
-" installed.
-map <C-K> :py3f ~/.vim/clang-format.py<cr>
-imap <C-K> <c-o>:py3f ~/.vim/clang-format.py<cr>
-
 " Move source codes by tab size. Tab is right move and Shift+tab is left.
 vmap <Tab> >gv
 vmap <S-Tab> <gv
-
-" Toggle line number display
-fu! ToggleNu()
-    let &nu = 1 - &nu
-endf
-map <leader>d :call ToggleNu()<CR>
 
 " Toggle paste option. This is useful if you want to cut or copy some text
 " from one window and paste it in Vim. Don't forget to toggle paste again once
