@@ -36,7 +36,7 @@ Plug('neovim/nvim-lspconfig')
 Plug('tpope/vim-fugitive')
 Plug('nvim-lua/plenary.nvim')
 Plug('nvim-telescope/telescope.nvim', { ['tag'] = '0.1.8' })
-Plug('majutsushi/tagbar')
+Plug('preservim/tagbar')
 Plug('ayuanx/vim-mark-standalone')
 Plug('mfussenegger/nvim-lint')
 
