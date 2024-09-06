@@ -219,7 +219,22 @@ require('gitsigns').setup {
   end
 }
 
-require('telescope').setup {}
+require('telescope').setup {
+  defaults = {
+    layout_strategy = 'vertical',
+    layout_config = {
+      vertical = {
+        height = 0.9,
+        width = 0.95,
+        prompt_position = 'top',
+        preview_height = 0.6
+      },
+    },
+    path_display = { truncate = true },
+    prompt_prefix='🔍 ',
+  }
+}
+
 vim.cmd("let g:mwDefaultHighlightingPalette = 'maximum'")
 
 require('lint').linters_by_ft = {
