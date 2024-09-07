@@ -121,7 +121,6 @@ local servers = {
   'rust_analyzer',
   'pylsp',
   'lua_ls',
-  'bashls',
   'cmake',
 }
 local lspconfig = require('lspconfig')
