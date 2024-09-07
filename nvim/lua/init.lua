@@ -33,12 +33,12 @@ Plug('romgrk/barbar.nvim')
 Plug('williamboman/mason.nvim')
 Plug('williamboman/mason-lspconfig.nvim')
 Plug('neovim/nvim-lspconfig')
-Plug('tpope/vim-fugitive')
 Plug('nvim-lua/plenary.nvim')
 Plug('nvim-telescope/telescope.nvim')
 Plug('preservim/tagbar')
 Plug('ayuanx/vim-mark-standalone')
 Plug('mfussenegger/nvim-lint')
+Plug('sindrets/diffview.nvim')
 
 -- All of your Plugins must be added before the following line
 -- :PlugInstall to install the plugins
@@ -250,6 +250,9 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
     -- for the current filetype
     require("lint").try_lint()
   end,
+})
+
+require("diffview").setup({
 })
 
 
