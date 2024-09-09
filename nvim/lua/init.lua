@@ -96,10 +96,14 @@ require'nvim-treesitter.configs'.setup {
 vim.cmd.colorscheme "catppuccin"
 require("ibl").setup()
 require('lualine').setup()
-require("mason").setup()
+local border = 'rounded'
+require("mason").setup({
+  ui = {
+    border = border,
+  },
+})
 require("mason-lspconfig").setup()
 
-local border = 'single'
 -- vim.diagnostic.disable()
 -- Add border to the diagnostic popup window
 vim.diagnostic.config({
