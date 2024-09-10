@@ -302,6 +302,14 @@ map('n', ',w', '<Cmd>BufferClose<CR>', opts)
 map('n', '<F2>', '<Cmd>w!<CR>', opts)
 map('n', '<F3>', '<Cmd>:TagbarToggle<CR>', opts)
 map('n', '<F4>', '<Cmd>NvimTreeToggle<CR>', opts)
+vim.keymap.set('n', '<F5>', function()
+  if next(require('diffview.lib').views) == nil then
+    vim.cmd('DiffviewOpen')
+  else
+    vim.cmd('DiffviewClose')
+  end
+end)
+map('n', '<F6>', '<Cmd>DiffviewFileHistory %<CR>', opts)
 map('n', '<F8>', '<Cmd>MarkClear<CR><Cmd>noh<CR>', opts)
 
 local builtin = require('telescope.builtin')
