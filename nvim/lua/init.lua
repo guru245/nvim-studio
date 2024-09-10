@@ -194,6 +194,9 @@ vim.cmd("let g:tagbar_sort = 0")
 require('gitsigns').setup {
   numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
   current_line_blame = true,
+  preview_config = {
+    border = border,
+  },
   on_attach = function(bufnr)
     local gitsigns = require('gitsigns')
 
