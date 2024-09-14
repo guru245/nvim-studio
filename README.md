@@ -128,7 +128,11 @@ nvim <-- Ignore an error that you see while running nvim
 * `<leader>p`: Toggle paste option. This is useful if you want to cut or copy
   some text from one window and paste it in nvim. Don't forget to toggle paste
   again once you finish pasting.
-* `<leader>m`: Mark the keyword under the cursor
+* `<leader>m`: Mark the keyword under the cursor. See more mappings [here](https://github.com/inkarkat/vim-mark?tab=readme-ov-file#usage)
+
+## Tmux Usage
+
+You can find the intuitive mappings [here](https://github.com/tmux-plugins/tmux-pain-control). 
 
 
 
