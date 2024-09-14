@@ -5,7 +5,7 @@
 ## Features
 
 * TBD
-  
+
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ You should set up a good environment to make your NVIM life easier. NVIM Studio 
 
 * Set [CaskaydiaCoveNerdFont-Regular.ttf](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/CascadiaCode.zip) by default to your terminal.
 
-  
+
 
 ## Setting up the Environment
 
@@ -37,11 +37,11 @@ You should set up a good environment to make your NVIM life easier. NVIM Studio 
    ./autogen.sh
    ./configure --prefix=$HOME/.local/
    make
-   make install 
+   make install
 
 3. Install tmux
 
-   I strongly recommend using tmux if you haven't already. If you have a root privilege, `sudo apt install tmux` will do. If the version is lower than 3.2a in your Ubuntu or if you don't have a root privilege, you may as well build tmux >= 3.2a to enjoy true color. libevent and ncurses are prerequisites. See [this page](https://github.com/tmux/tmux/wiki/Installing). I describe the tmux build command as an example as follows:   
+   I strongly recommend using tmux if you haven't already. If you have a root privilege, `sudo apt install tmux` will do. If the version is lower than 3.2a in your Ubuntu or if you don't have a root privilege, you may as well build tmux >= 3.2a to enjoy true color. libevent and ncurses are prerequisites. See [this page](https://github.com/tmux/tmux/wiki/Installing). I describe the tmux build command as an example as follows:
 
    ```bash
    cd ~/.local/src
@@ -116,7 +116,7 @@ nvim <-- Ignore an error that you see while running nvim
 * F2: Save the current file
 * F3: Toggle tagbar, source code browser on the left side
 * F4: Toggle nvim-tree, file system explorer on the right side
-* F5: Toggle diffview that shows differences against the current index 
+* F5: Toggle diffview that shows differences against the current index
 * F6: File history view that allows you to list all the commits. This can be closed by F5.
 * F7: Empty
 * F8: Clear all marks
@@ -129,10 +129,13 @@ nvim <-- Ignore an error that you see while running nvim
   some text from one window and paste it in nvim. Don't forget to toggle paste
   again once you finish pasting.
 * `<leader>m`: Mark the keyword under the cursor. See more mappings [here](https://github.com/inkarkat/vim-mark?tab=readme-ov-file#usage)
+* `K`: [`vim.lsp.buf.hover()`](https://neovim.io/doc/user/lsp.html#vim.lsp.buf.hover()) in Normal mode.
+* `[d` and `]d`: Prev/Next diagnostic message.
+* `<C-W>d`: `vim.diagnostic.open_float()`
 
 ## Tmux Usage
 
-You can find the intuitive mappings [here](https://github.com/tmux-plugins/tmux-pain-control). 
+You can find the intuitive mappings [here](https://github.com/tmux-plugins/tmux-pain-control).
 
 
 
@@ -173,7 +176,7 @@ To perform telescope searching, refer to the following keymaps:
 | `<leader>cc` | Lists LSP incoming calls for word under the cursor |
 | `<leader>ct` | Searches for the string under your cursor or selection in your current working directory |
 
-For the other Telescope mapping, see [here](https://github.com/nvim-telescope/telescope.nvim?tab=readme-ov-file#default-mappings). 
+For the other Telescope mappings, see [here](https://github.com/nvim-telescope/telescope.nvim?tab=readme-ov-file#default-mappings).
 
 
 
