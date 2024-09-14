@@ -112,16 +112,16 @@ nvim <-- Ignore an error that you see while running nvim
 
 ## Basic Usage
 
-* F1: Empty
-* F2: Save the current file
-* F3: Toggle tagbar, source code browser on the left side
-* F4: Toggle nvim-tree, file system explorer on the right side
-* F5: Toggle diffview that shows differences against the current index
-* F6: File history view that allows you to list all the commits. This can be closed by F5.
-* F7: Empty
-* F8: Clear all marks
-* F9: Empty
-* F10: Empty
+* `F1`: Empty
+* `F2`: Save the current file
+* `F3`: Toggle tagbar, source code browser on the left side
+* `F4`: Toggle nvim-tree, file system explorer on the right side
+* `F5`: Toggle diffview that shows differences against the current index
+* `F6`: File history view that allows you to list all the commits. This can be closed by `F5`.
+* `F7`: Empty
+* `F8`: Clear all marks
+* `F9`: Empty
+* `F10`: Empty
 * `ctrl+h`, `ctrl+l`: Go to the tab on the left/right
 * `alt+h`, `alt+l`, `alt+k`, `alt+j`:  Move between nvim panes
 * `,w`: Save and close the current buffer.
