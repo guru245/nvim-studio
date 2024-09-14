@@ -1,79 +1,111 @@
 # NVIM Studio
 
-Are you still using Vim?Can we turn Vim into an IDE? Yes, we can. It works even better and faster than
-any traditional IDE. Let's dive right in.
-
 ![overview](./.imgs/overview.png)
 
 ## Features
 
-* File system explorer browses directory hierarchies, and performs file system
-  operations
+* TBD
+  
 
-* Source code browser provides an overview of the structure of the source code
+## Prerequisites
 
-* Statusbar at the bottom displays useful information
+You should set up a good environment to make your NVIM life easier. NVIM Studio is running in the following environments:
 
-* Source tab at the top displays all opened source via tab interface
+* Ubuntu 20.04 or above
 
-  ![tab](./.imgs/tab.gif)
-
-* Git wrapper works with Git without leaving Vim studio.
-
-* Auto completion opens a popup menu to complete using tab
-
-  ![auto completion](./.imgs/autocomp.gif)
-
-* Automatic index searches and browses source code thanks to lsp
-
-* [Clang-format](https://clang.llvm.org/docs/ClangFormat.html) integration formats code with the desired style.
-
-## Environment
-
-NVIM studio has been tested on the following environments:
-
-* Ubuntu 18.04 or above, Fedora 24, and WSL2
-* Neovim 9.0
 * [Windows Terminal](https://docs.microsoft.com/en-us/windows/terminal/get-started)
 
-## Installation
+* Set [CaskaydiaCoveNerdFont-Regular.ttf](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/CascadiaCode.zip) by default to your terminal.
 
-1. Install exuberant-ctags and global.
+  
 
-   - `apt install exuberant-ctags global`
-   - If you are used to building things from source, [universal-ctags](https://github.com/universal-ctags/ctags) is recommended instead of exuberant-ctags because exuberant-ctags is very old and is not maintained.
+## Setting up the Environment
 
-2. Install [CaskaydiaCove](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/CascadiaCode.zip) fonts for glyphs.
-
-   * Set CaskaydiaCoveNerdFontMono-Regular.ttf by default to your terminal. For your reference, see
-   [Windows Terminal Powerline Setup | Microsoft Docs](https://docs.microsoft.com/en-us/windows/terminal/tutorials/powerline-setup)
-
-3. d
-
-   ```
-   apt install fd-find
-   ln -s $(which fdfind) ~/.local/bin/fd
-   apt install ripgrep, npm, libjansson-dev
-   ```
-
-
-
-4. Set up Vim config
+1. Install the following packages. It could be a overkill to install all packages. Some of them might not be necessary depending on your environment. However, note that if you encounter any unexpected symptom throughout this guide, come back here and see what is missing.
 
    ```bash
-   git clone --depth 1 --recurse-submodules https://github.com/guru245/nvim-studio.git [nvim-studio where you want]
-   ln -s [nvim-studio]/nvim ~/.config/nvim/
-   Note https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
-   or
-   sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-   nvim -es -u init.vim -i NONE -c "PlugInstall" -c "qa"
+   sudo apt install ssh keychain make cmake python3-cryptography clang-format automake autoconf pkg-config python3-pip clang libtool-bin npm curl build-essential unzip gettext ninja-build clang-tidy
    ```
 
-5. LSPInstall
+2. Install [universal-ctags](https://github.com/universal-ctags/ctags)
+
+   ```bash
+   sudo apt-get install libjansson-dev
+   mkdir ~/.local/src; cd ~/.local/src
+   git clone https://github.com/universal-ctags/ctags.git --depth=1
+   cd ctags
+   ./autogen.sh
+   ./configure --prefix=$HOME/.local/
+   make
+   make install 
+
+3. Install tmux
+
+   I strongly recommend using tmux if you haven't already. If you have a root privilege, `sudo apt install tmux` will do. If the version is lower than 3.2a in your Ubuntu or if you don't have a root privilege, you may as well build tmux >= 3.2a to enjoy true color. libevent and ncurses are prerequisites. See [this page](https://github.com/tmux/tmux/wiki/Installing). I describe the tmux build command as an example as follows:   
+
+   ```bash
+   cd ~/.local/src
+   git clone https://github.com/tmux/tmux.git
+   cd tmux
+   ./autogen.sh
+   ./configure --prefix=${ROOT_DIR}/.local CFLAGS="-I${ROOT_DIR}/.local/include -I${ROOT_DIR}/.local/include/ncurses" LDFLAGS="-L${ROOT_DIR}/.local/include -L${ROOT_DIR}/.local/include/ncurses -L${ROOT_DIR}/.local/lib"
+   make && make install
+   ```
+
+   Install tpm (Tmux Plugin Manager)
+
+   ```bash
+   cd
+   wget https://github.com/guru245/dotfiles/blob/main/.tmux.conf
+   wget https://github.com/guru245/dotfiles/blob/main/truecolor-test
+   cd ~/.local/src
+   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+   tmux
+   ```
+
+   Press `Ctrl+a` and then press `I` (captital) to install tmux plugins. You may want to run `~/trucolor-test` to check if true color is working correctly.
+
+4. Install misc packages for Neovim
+
+   ```
+   sudo apt install ripgrep fzf fd-find bear
+   ln -s $(which fdfind) ~/.local/bin/fd
+   ```
+
+
+
+## Installing Neovim
+
+```bash
+sudo apt install ninja-build gettext cmake unzip curl build-essential
+cd ~/.local/src
+git clone https://github.com/neovim/neovim
+cd neovim
+git checkout tags/v0.10.1
+make CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/.local" CMAKE_BUILD_TYPE=Release
+make install
+pip3 install pynvim
+```
+
+
+
+## Installing NVIM Studio
+
+```bash
+cd ~/.local/src
+git clone --depth 1 --recurse-submodules https://github.com/guru245/nvim-studio.git
+ln -s ~/.local/src/nvim-studio ~/.config/nvim/
+Note https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
+or
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+nvim -es -u init.vim -i NONE -c "PlugInstall" -c "qa"
+```
+
+4. LSPInstall
 
    ```
    ssdsd
-
+   
    ```
 
 
