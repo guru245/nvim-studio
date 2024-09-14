@@ -63,7 +63,7 @@ You should set up a good environment to make your NVIM life easier. NVIM Studio 
    tmux
    ```
 
-   Press `Ctrl+a` and then press `I` (captital) to install tmux plugins. You may want to run `~/trucolor-test` to check if true color is working correctly.
+   Press `<leader>a`, i.e., `Ctrl+a` and then press `I` (captital) to install tmux plugins. You may want to run `~/trucolor-test` to check if true color is working correctly.
 
 4. Install misc packages for Neovim
 
@@ -93,64 +93,83 @@ pip3 install pynvim
 
 ```bash
 cd ~/.local/src
-git clone --depth 1 --recurse-submodules https://github.com/guru245/nvim-studio.git
-ln -s ~/.local/src/nvim-studio ~/.config/nvim/
+git clone https://github.com/guru245/nvim-studio.git
+cd
+mkdir .config
+ln -s ~/.local/src/nvim-studio/nvim ~/.config/nvim/
 Note https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
 or
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-nvim -es -u init.vim -i NONE -c "PlugInstall" -c "qa"
+nvim <-- Ignore errors that you see while running nvim.
+:PluginInstall in nvim
+:qa
+nvim <-- Ignore an error that you see while running nvim
+:LspInstall lua_ls
+:LspInstall clangd
 ```
 
-4. LSPInstall
-
-   ```
-   ssdsd
-   
-   ```
 
 
+## Basic Usage
 
-## Usage
-
-This section describes mapping keys for Vim studio. Note that normal Vim
-commands and other detailed configurations of [.vimrc](.vimrc) are not
-explained. If you are not familiar with the Vim commands or [.vimrc](.vimrc),
-check out [Vim help](http://vimdoc.sourceforge.net/htmldoc/help.html) or
-[Vim options](http://vimdoc.sourceforge.net/htmldoc/options.html).
-
-* F1: Show a man page for the keyword under the cursor.
+* F1: Empty
 * F2: Save the current file
 * F3: Toggle tagbar, source code browser on the left side
-* F4: Toggle NERDTree, file system explorer on the right side
+* F4: Toggle nvim-tree, file system explorer on the right side
+* F5: Toggle diffview that shows differences against the current index 
+* F6: File history view that allows you to list all the commits. This can be closed by F5.
 * F7: Empty
 * F8: Clear all marks
 * F9: Empty
 * F10: Empty
 * `ctrl+h`, `ctrl+l`: Go to the tab on the left/right
-* `shift+h`, `shift+l`, `shift+k`, `shift+j`:  Move between split windows
-* `,w`: Save and close the current file. *Well~ we call it buffer in Vim*
-* `ctrl+k`: Format code style as per clang-format style options
-* `<leader>d`: Toggle line number
+* `alt+h`, `alt+l`, `alt+k`, `alt+j`:  Move between nvim panes
+* `,w`: Save and close the current buffer.
 * `<leader>p`: Toggle paste option. This is useful if you want to cut or copy
-  some text from one window and paste it in Vim. Don't forget to toggle paste
+  some text from one window and paste it in nvim. Don't forget to toggle paste
   again once you finish pasting.
 * `<leader>m`: Mark the keyword under the cursor
 
-To perform cscope searching, use `:GscopeFind {querytype} {name}`. Where
-`{querytype}` corresponds to the actual cscope line interface numbers as
-well as default nvi commands:
 
-Or you can use the following keymaps:
+
+## Nvim-tree Usage
+
+Press `?` to see a help screen that shows all mappings.
+
+
+
+## Gitsigns Usage
+
+This plugin is convenient to stage, reset and navigate hunks. Check out the [keymaps](https://github.com/lewis6991/gitsigns.nvim?tab=readme-ov-file#keymaps)
+
+
+
+## Diffview Usage
+
+Diffview allows you to cycle through diffs for all modified files for any git rev, not to mention super convenient to resolve all conflicts. You can start Diffview by pressing `<F5>`. Once you get in, you can press `g?` to see all mappings.
+
+
+
+## LSP Usage
+
+Before you dive in Telescope plugin, you need to understand how to utilize LSP. To fully utilize LSP, you need to create `compile_commands.json`. `compile_commands.json` can be created by *bear*. You can [see how to use *bear*](https://github.com/rizsotto/Bear?tab=readme-ov-file#how-to-use). When you succeed in creating the json file, you are ready to move onto Telescope.
+
+
+
+## Telescope Usage
+
+To perform telescope searching, refer to the following keymaps:
 
 | keymap | desc |
 |--------|------|
-| `<leader>cs` | Find symbol (reference) under cursor |
-| `<leader>cg` | Find symbol definition under cursor |
-| `<leader>cc` | Functions calling this function |
-| `<leader>ct` | Find text string under cursor |
+| `<leader>ff` | Lists files in your current working directory, respects .gitignore |
+| `<leader>lg` | Search for a string in your current working directory and get results live as you type |
+| `<leader>cs` | Lists LSP references for word under the cursor |
+| `<leader>cg` | Goto the definition of the type of the word under the cursor |
+| `<leader>cc` | Lists LSP incoming calls for word under the cursor |
+| `<leader>ct` | Searches for the string under your cursor or selection in your current working directory |
+
+For the other Telescope mapping, see [here](https://github.com/nvim-telescope/telescope.nvim?tab=readme-ov-file#default-mappings). 
 
 
-## Powered by:
-
-* [Vundle.vim](https://github.com/VundleVim/Vundle.vim)
 
