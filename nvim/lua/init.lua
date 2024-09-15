@@ -39,6 +39,7 @@ Plug('preservim/tagbar')
 Plug('ayuanx/vim-mark-standalone')
 Plug('mfussenegger/nvim-lint')
 Plug('sindrets/diffview.nvim')
+Plug('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' })
 
 -- All of your Plugins must be added before the following line
 -- :PlugInstall to install the plugins
@@ -254,6 +255,7 @@ require('telescope').setup {
     prompt_prefix='🔍 ',
   }
 }
+require('telescope').load_extension('fzf')
 
 vim.cmd("let g:mwDefaultHighlightingPalette = 'maximum'")
 
