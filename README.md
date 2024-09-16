@@ -82,6 +82,8 @@ cd ~/.local/src
 git clone https://github.com/neovim/neovim
 cd neovim
 git checkout tags/v0.10.1
+make distclean <- if necessary
+make deps <- if necessary
 make CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/.local" CMAKE_BUILD_TYPE=Release
 make install
 pip3 install pynvim
@@ -170,11 +172,14 @@ To perform telescope searching, refer to the following keymaps:
 | keymap | desc |
 |--------|------|
 | `<leader>ff` | Lists files in your current working directory, respects .gitignore |
+| `<leader>fb` | Open Telescope file browser |
 | `<leader>lg` | Search for a string in your current working directory and get results live as you type |
 | `<leader>cs` | Lists LSP references for word under the cursor |
 | `<leader>cg` | Goto the definition of the type of the word under the cursor |
 | `<leader>cc` | Lists LSP incoming calls for word under the cursor |
 | `<leader>ct` | Searches for the string under your cursor or selection in your current working directory |
+
+For the file browser mappings, see [here](https://github.com/nvim-telescope/telescope-file-browser.nvim?tab=readme-ov-file#mappings). Note that `goto_parent_dir` is mapped to `u` due to the conflict between Telescope and file browser. The bug report has been submitted.
 
 For the other Telescope mappings, see [here](https://github.com/nvim-telescope/telescope.nvim?tab=readme-ov-file#default-mappings).
 

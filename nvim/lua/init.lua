@@ -40,6 +40,7 @@ Plug('ayuanx/vim-mark-standalone')
 Plug('mfussenegger/nvim-lint')
 Plug('sindrets/diffview.nvim')
 Plug('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' })
+Plug('nvim-telescope/telescope-file-browser.nvim')
 
 -- All of your Plugins must be added before the following line
 -- :PlugInstall to install the plugins
@@ -240,9 +241,11 @@ require('gitsigns').setup {
   end
 }
 
+local fb_actions = require "telescope".extensions.file_browser.actions
 require('telescope').setup {
   defaults = {
     layout_strategy = 'vertical',
+    sorting_strategy = 'ascending',
     layout_config = {
       vertical = {
         height = 0.9,
@@ -253,9 +256,26 @@ require('telescope').setup {
     },
     path_display = { truncate = true },
     prompt_prefix='🔍 ',
-  }
+  },
+  extensions = {
+    file_browser = {
+      layout_strategy = 'horizontal',
+      path = "%:p:h",
+      cwd = "%:p:h",
+      grouped = true,
+      display_stat = false,
+      auto_depth = true,
+      hidden = { file_browser = true, folder_browser = true },
+      mappings = {
+        ["n"] = {
+          ["u"] = fb_actions.goto_parent_dir,
+        },
+      },
+    },
+  },
 }
 require('telescope').load_extension('fzf')
+require('telescope').load_extension('file_browser')
 
 vim.cmd("let g:mwDefaultHighlightingPalette = 'maximum'")
 
@@ -315,6 +335,8 @@ vim.keymap.set('n', '<F8>', '<Cmd>MarkClear<CR><Cmd>noh<CR>')
 local builtin = require('telescope.builtin')
 -- Lists files in your current working directory, respects .gitignore
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+-- Execute File browser
+vim.keymap.set('n', '<leader>fb', ":Telescope file_browser<CR>")
 -- Search for a string in your current working directory and get results live as you type
 vim.keymap.set('n', '<leader>lg', builtin.live_grep, {})
 -- Searches for the string under your cursor or selection in your current working directory
