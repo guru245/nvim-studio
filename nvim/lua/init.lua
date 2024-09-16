@@ -286,24 +286,22 @@ require("diffview").setup({
 -----------------------
 -- Mapping
 -----------------------
-local map = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
-
 -- Move around buffers by pressing ctrl+h or ctrl+l
-map('n', '<C-h>', '<Cmd>BufferPrevious<CR>', opts)
-map('n', '<C-l>', '<Cmd>BufferNext<CR>', opts)
+vim.keymap.set('n', '<C-h>', '<Cmd>BufferPrevious<CR>')
+vim.keymap.set('n', '<C-l>', '<Cmd>BufferPrevious<CR>')
 
 -- Move between split windows
-map('n', '<A-h>', '<Cmd>wincmd h<CR>', opts)
-map('n', '<A-l>', '<Cmd>wincmd l<CR>', opts)
-map('n', '<A-k>', '<Cmd>wincmd k<CR>', opts)
-map('n', '<A-j>', '<Cmd>wincmd j<CR>', opts)
+vim.keymap.set('n', '<A-h>', '<Cmd>wincmd h<CR>')
+vim.keymap.set('n', '<A-l>', '<Cmd>wincmd l<CR>')
+vim.keymap.set('n', '<A-k>', '<Cmd>wincmd k<CR>')
+vim.keymap.set('n', '<A-j>', '<Cmd>wincmd j<CR>')
 
 -- Save and close the buffer
-map('n', ',w', '<Cmd>BufferClose<CR>', opts)
-map('n', '<F2>', '<Cmd>w!<CR>', opts)
-map('n', '<F3>', '<Cmd>:TagbarToggle<CR>', opts)
-map('n', '<F4>', '<Cmd>NvimTreeToggle<CR>', opts)
+vim.keymap.set('n', ',w', '<Cmd>BufferClose<CR>')
+
+vim.keymap.set('n', '<F2>', '<Cmd>w!<CR>')
+vim.keymap.set('n', '<F3>', '<Cmd>:TagbarToggle<CR>')
+vim.keymap.set('n', '<F4>', '<Cmd>NvimTreeToggle<CR>')
 vim.keymap.set('n', '<F5>', function()
   if next(require('diffview.lib').views) == nil then
     vim.cmd('DiffviewOpen')
@@ -311,8 +309,8 @@ vim.keymap.set('n', '<F5>', function()
     vim.cmd('DiffviewClose')
   end
 end)
-map('n', '<F6>', '<Cmd>DiffviewFileHistory %<CR>', opts)
-map('n', '<F8>', '<Cmd>MarkClear<CR><Cmd>noh<CR>', opts)
+vim.keymap.set('n', '<F6>', '<Cmd>DiffviewFileHistory %<CR>')
+vim.keymap.set('n', '<F8>', '<Cmd>MarkClear<CR><Cmd>noh<CR>')
 
 local builtin = require('telescope.builtin')
 -- Lists files in your current working directory, respects .gitignore
