@@ -6,7 +6,35 @@
 
 ## Features
 
-* TBD
+* LSP support that provides much better experience than cscope and ctag.
+
+* Better highlighting
+
+  ![nvim-treesitter](./.img/treesitter.png)
+
+  Treesitter-based highlighting (left) vs Traditional highlighting (right)
+
+* Git Integration
+
+  ![git_integration](./.img/git_integration.png)
+
+* Static analysis
+
+  ![diagnostic_hover](./.img/diagnostic_hover.png)
+
+* Auto completion
+
+  ![autocompletion](./.img/autocompletion.png)
+
+* Highlight marker
+
+  ![marker](./.img/marker.png)
+
+* Yank to the system clipboard and vice versa
+
+  ![yank](./.img/yank.gif)
+
+  
 
 
 ## Prerequisites
@@ -65,7 +93,7 @@ You should set up a good environment to make your NVIM life easier. NVIM Studio 
    tmux
    ```
 
-   Press `<leader>a`, i.e., `Ctrl+a` and then press `I` (captital) to install tmux plugins. You may want to run `~/trucolor-test` to check if true color is working correctly.
+   Press `<leader>a`, i.e., `Ctrl+a` and then press `I` (captital) to install tmux plugins. You may want to run [`truecolor-test`](https://github.com/guru245/dotfiles/blob/main/truecolor-test) to check if true color is working correctly.
 
 4. Install misc packages for Neovim
 
@@ -114,7 +142,7 @@ nvim <-- Ignore an error that you see while running nvim
 
 
 
-## Setting LSP
+## Setting up LSP
 
 Before you dive in, you need to understand how to utilize LSP (Language Server Protocol). To fully utilize LSP, you need to create `compile_commands.json`. `compile_commands.json` can be created by *bear*. You can [see how to use *bear*](https://github.com/rizsotto/Bear?tab=readme-ov-file#how-to-use). When you succeed in creating the json file, you are ready to move on.
 
