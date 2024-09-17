@@ -1,6 +1,8 @@
 # NVIM Studio
 
-![overview](./.imgs/overview.png)
+![overview](./.img/overview.png)
+
+
 
 ## Features
 
@@ -112,28 +114,71 @@ nvim <-- Ignore an error that you see while running nvim
 
 
 
+## Setting LSP
+
+Before you dive in, you need to understand how to utilize LSP (Language Server Protocol). To fully utilize LSP, you need to create `compile_commands.json`. `compile_commands.json` can be created by *bear*. You can [see how to use *bear*](https://github.com/rizsotto/Bear?tab=readme-ov-file#how-to-use). When you succeed in creating the json file, you are ready to move on.
+
+Next, you must install a language server that fits your needs. While installing NVIM studio, you've seen `:LSPInstall clangd`. The LSP is used for C and C++. If you want to use the other programming language, you need to install the other LSP that supports the language. You can find the list [here](https://github.com/williamboman/mason-lspconfig.nvim?tab=readme-ov-file#available-lsp-servers).
+
+After installing the LSP, you need to specify the LSP name in init.lua as follows:
+
+```lua
+local servers = {
+  'clangd',
+  'rust_analyzer',
+  'pylsp',
+  'lua_ls',
+  'cmake',
+}
+```
+
+
+
 ## Basic Usage
 
 * `F1`: Empty
+
 * `F2`: Save the current file
+
 * `F3`: Toggle tagbar, source code browser on the left side
+
 * `F4`: Toggle nvim-tree, file system explorer on the right side
+
 * `F5`: Toggle diffview that shows differences against the current index
+
 * `F6`: File history view that allows you to list all the commits. This can be closed by `F5`.
+
 * `F7`: Empty
+
 * `F8`: Clear all marks
+
 * `F9`: Empty
+
 * `F10`: Empty
+
 * `ctrl+h`, `ctrl+l`: Go to the tab on the left/right
+
 * `alt+h`, `alt+l`, `alt+k`, `alt+j`:  Move between nvim panes
+
 * `,w`: Save and close the current buffer.
+
 * `<leader>p`: Toggle paste option. This is useful if you want to cut or copy
   some text from one window and paste it in nvim. Don't forget to toggle paste
   again once you finish pasting.
+  
 * `<leader>m`: Mark the keyword under the cursor. See more mappings [here](https://github.com/inkarkat/vim-mark?tab=readme-ov-file#usage)
-* `K`: [`vim.lsp.buf.hover()`](https://neovim.io/doc/user/lsp.html#vim.lsp.buf.hover()) in Normal mode.
+
+* `K`: Shows a function prototype in a pop up.
+
+  ![hover](./.img/hover.png)
+
 * `[d` and `]d`: Prev/Next diagnostic message.
+
 * `<C-W>d`: `vim.diagnostic.open_float()`
+
+  ![diagnostic_hover](./.img/diagnostic_hover.png)
+
+
 
 ## Tmux Usage
 
@@ -159,15 +204,9 @@ Diffview allows you to cycle through diffs for all modified files for any git re
 
 
 
-## LSP Usage
-
-Before you dive in Telescope plugin, you need to understand how to utilize LSP. To fully utilize LSP, you need to create `compile_commands.json`. `compile_commands.json` can be created by *bear*. You can [see how to use *bear*](https://github.com/rizsotto/Bear?tab=readme-ov-file#how-to-use). When you succeed in creating the json file, you are ready to move onto Telescope.
-
-
-
 ## Telescope Usage
 
-To perform telescope searching, refer to the following keymaps:
+Telescope helps you navigate the code. To perform telescope searching, refer to the following keymaps:
 
 | keymap | desc |
 |--------|------|
@@ -182,6 +221,3 @@ To perform telescope searching, refer to the following keymaps:
 For the file browser mappings, see [here](https://github.com/nvim-telescope/telescope-file-browser.nvim?tab=readme-ov-file#mappings). Note that `goto_parent_dir` is mapped to `u` due to the conflict between Telescope and file browser. The bug report has been submitted.
 
 For the other Telescope mappings, see [here](https://github.com/nvim-telescope/telescope.nvim?tab=readme-ov-file#default-mappings).
-
-
-
