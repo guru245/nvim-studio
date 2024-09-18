@@ -166,5 +166,7 @@ vmap <S-Tab> <gv
 map <leader>p :set invpaste paste?<CR>
 set pastetoggle=<leader>p
 
+map <C-K> :py3f ~/.config/nvim/clang-format.py<cr>
+
 " Must be located at the end of init.vim
 lua require('init')
