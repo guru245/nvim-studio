@@ -320,6 +320,9 @@ require("formatter").setup({
     cpp = {
       require("formatter.filetypes.cpp").clangformat,
     },
+    python = {
+      require("formatter.filetypes.python").autopep8,
+    },
     ["*"] = {
       -- Delete trailing spaces at eol when a file is saved.
       require("formatter.filetypes.any").remove_trailing_whitespace,
