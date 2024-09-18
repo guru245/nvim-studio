@@ -308,7 +308,7 @@ require("diffview").setup({
 -----------------------
 -- Move around buffers by pressing ctrl+h or ctrl+l
 vim.keymap.set('n', '<C-h>', '<Cmd>BufferPrevious<CR>')
-vim.keymap.set('n', '<C-l>', '<Cmd>BufferPrevious<CR>')
+vim.keymap.set('n', '<C-l>', '<Cmd>BufferNext<CR>')
 
 -- Move between split windows
 vim.keymap.set('n', '<A-h>', '<Cmd>wincmd h<CR>')
