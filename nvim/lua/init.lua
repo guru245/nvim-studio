@@ -356,7 +356,13 @@ vim.keymap.set("n", "<F5>", function()
     vim.cmd("DiffviewClose")
   end
 end)
-vim.keymap.set("n", "<F6>", "<Cmd>DiffviewFileHistory %<CR>")
+vim.keymap.set("n", "<F6>", function()
+  if next(require("diffview.lib").views) == nil then
+    vim.cmd("DiffviewFileHistory %")
+  else
+    vim.cmd("DiffviewClose")
+  end
+end)
 vim.keymap.set("n", "<F8>", "<Cmd>MarkClear<CR><Cmd>noh<CR>")
 
 local builtin = require("telescope.builtin")

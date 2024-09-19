@@ -34,7 +34,7 @@
 
   ![yank](./.img/yank.gif)
 
-  
+
 
 
 ## Prerequisites
@@ -174,7 +174,7 @@ local servers = {
 
 * `F5`: Toggle diffview that shows differences against the current index
 
-* `F6`: File history view that allows you to list all the commits. This can be closed by `F5`.
+* `F6`: Toggle file history view that allows you to list all the commits.
 
 * `F7`: Empty
 
@@ -193,7 +193,7 @@ local servers = {
 * `<leader>p`: Toggle paste option. This is useful if you want to cut or copy
   some text from one window and paste it in nvim. Don't forget to toggle paste
   again once you finish pasting.
-  
+
 * `<leader>m`: Mark the keyword under the cursor. See more mappings [here](https://github.com/inkarkat/vim-mark?tab=readme-ov-file#usage)
 
 * `K`: Shows a function prototype in a pop up.
