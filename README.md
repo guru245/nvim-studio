@@ -1,6 +1,6 @@
 # NVIM Studio
 
-If you are a VS Code user, I won’t say anything. However, if you are a Vim user, you must use Neovim. There is no reason to stay in Vim. It’s not a stretch to say that Neovim is the future.
+If you are a VS Code user, I won’t say anything. However, if you are a Vim user, you must use Neovim. The reason is that Neovim provides better plugins, better UI, and most importantly LSP support. It’s not a stretch to say that Neovim is the future. 
 
 That being said, Neovim has a steep learning curve even for Vim experts. This is where NVIM studio comes in.  NVIM studio will help you understand how to set up Neovim, providing a basic platform to foster your own setting.
 
@@ -236,11 +236,17 @@ This plugin is convenient to stage, reset and navigate hunks. Check out the [key
 Diffview allows you to cycle through diffs for all modified files for any git rev, not to mention super convenient to resolve all conflicts. You can start Diffview by pressing `<F5>`. Once you get in, you can press `g?` to see all mappings.
 
 
+
+
 ## Comment Usage
 This helps you write comments. See all mappings [here](https://github.com/numToStr/Comment.nvim?tab=readme-ov-file#-usage).
 
 
+
+
 ## Telescope Usage
+
+![telescope](./.img/telescope.png)
 
 Telescope helps you navigate the code. To perform telescope searching, refer to the following keymaps:
 
