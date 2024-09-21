@@ -1,5 +1,9 @@
 # NVIM Studio
 
+If you are a VS Code user, I won’t say anything. However, if you are a Vim user, you must use Neovim. There is no reason to stay in Vim. It’s not a stretch to say that Neovim is the future.
+
+That being said, Neovim has a steep learning curve even for Vim experts. This is where NVIM studio comes in.  NVIM studio will help you understand how to set up Neovim, providing a basic platform to foster your own setting.
+
 ![overview](./.img/overview.png)
 
 
@@ -68,6 +72,7 @@ You should set up a good environment to make your NVIM life easier. NVIM Studio 
    ./configure --prefix=$HOME/.local/
    make
    make install
+   ```
 
 3. Install tmux
 
