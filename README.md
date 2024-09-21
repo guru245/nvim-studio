@@ -231,6 +231,9 @@ This plugin is convenient to stage, reset and navigate hunks. Check out the [key
 Diffview allows you to cycle through diffs for all modified files for any git rev, not to mention super convenient to resolve all conflicts. You can start Diffview by pressing `<F5>`. Once you get in, you can press `g?` to see all mappings.
 
 
+## Comment Usage
+This helps you write comments. See all mappings [here](https://github.com/numToStr/Comment.nvim?tab=readme-ov-file#-usage).
+
 
 ## Telescope Usage
 

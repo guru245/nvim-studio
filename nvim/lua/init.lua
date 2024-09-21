@@ -1,6 +1,7 @@
 -----------------------
 -- General
 -----------------------
+vim = vim
 -- disable netrw at the very start of your init.lua
 -- This is requested by nvim-tree.
 vim.g.loaded_netrw = 1
@@ -45,6 +46,7 @@ Plug(
 )
 Plug("nvim-telescope/telescope-file-browser.nvim")
 Plug("mhartington/formatter.nvim")
+Plug("numToStr/Comment.nvim")
 
 -- All of your Plugins must be added before the following line
 -- :PlugInstall to install the plugins
@@ -329,6 +331,8 @@ require("formatter").setup({
     },
   },
 })
+
+require("Comment").setup()
 
 -----------------------
 -- Mapping
