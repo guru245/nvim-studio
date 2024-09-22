@@ -47,6 +47,8 @@ Plug(
 Plug("nvim-telescope/telescope-file-browser.nvim")
 Plug("mhartington/formatter.nvim")
 Plug("numToStr/Comment.nvim")
+Plug("folke/which-key.nvim")
+Plug("echasnovski/mini.icons")
 
 -- All of your Plugins must be added before the following line
 -- :PlugInstall to install the plugins
@@ -59,7 +61,7 @@ vim.call("plug#end")
 -- Plugin Settings
 -----------------------
 local function my_on_attach(bufnr)
-  local api = require "nvim-tree.api"
+  local api = require("nvim-tree.api")
 
   local function opts(desc)
     return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
@@ -74,7 +76,7 @@ local function my_on_attach(bufnr)
   vim.keymap.set("n", "?", api.tree.toggle_help, opts("Help"))
 end
 
-require("nvim-tree").setup {
+require("nvim-tree").setup({
   on_attach = my_on_attach,
   respect_buf_cwd = true,
   sort = {
@@ -90,17 +92,17 @@ require("nvim-tree").setup {
   filters = {
     dotfiles = true,
   },
-}
+})
 
-require "nvim-treesitter.configs".setup {
+require("nvim-treesitter.configs").setup({
   auto_install = true,
   hightlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
   },
-}
+})
 
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme("catppuccin")
 require("ibl").setup()
 require("lualine").setup()
 local border = "rounded"
@@ -140,16 +142,16 @@ local on_attach = function(_, _)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 end
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
+  lspconfig[lsp].setup({
     on_attach = on_attach,
     capabilities = capabilities,
     handlers = handlers,
     --root_dir = lspconfig.util.root_pattern('.git', vim.fn.getcwd()),
-  }
+  })
 end
 
 local cmp = require("cmp")
-cmp.setup {
+cmp.setup({
   snippet = {
     expand = function(args)
       vim.fn["vsnip#anonymous"](args.body)
@@ -168,14 +170,14 @@ cmp.setup {
     ["<C-e>"] = cmp.mapping.abort(),
     ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
   }),
-  sources = cmp.config.sources {
+  sources = cmp.config.sources({
     { name = "nvim_lsp" },
     { name = "vsnip" }, -- For vsnip users.
     -- { name = 'luasnip' }, -- For luasnip users.
     -- { name = 'ultisnips' }, -- For ultisnips users.
     -- { name = 'snippy' }, -- For snippy users.
-  },
-}
+  }),
+})
 
 cmp.setup.cmdline({ "/", "?" }, {
   mapping = cmp.mapping.preset.cmdline(),
@@ -198,7 +200,7 @@ vim.cmd("let g:tagbar_left = 1")
 vim.cmd("let g:tagbar_width = 30")
 vim.cmd("let g:tagbar_sort = 0")
 
-require("gitsigns").setup {
+require("gitsigns").setup({
   numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
   current_line_blame = true,
   preview_config = {
@@ -234,25 +236,25 @@ require("gitsigns").setup {
     map("n", "<leader>hs", gitsigns.stage_hunk)
     map("n", "<leader>hr", gitsigns.reset_hunk)
     map("v", "<leader>hs", function()
-      gitsigns.stage_hunk { vim.fn.line("."), vim.fn.line("v") }
+      gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
     end)
     map("v", "<leader>hr", function()
-      gitsigns.reset_hunk { vim.fn.line("."), vim.fn.line("v") }
+      gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
     end)
     map("n", "<leader>hS", gitsigns.stage_buffer)
     map("n", "<leader>hu", gitsigns.undo_stage_hunk)
     map("n", "<leader>hR", gitsigns.reset_buffer)
     map("n", "<leader>hp", gitsigns.preview_hunk)
     map("n", "<leader>hb", function()
-      gitsigns.blame_line { full = true }
+      gitsigns.blame_line({ full = true })
     end)
     map("n", "<leader>tb", gitsigns.toggle_current_line_blame)
     map("n", "<leader>td", gitsigns.toggle_deleted)
   end,
-}
+})
 
-local fb_actions = require "telescope".extensions.file_browser.actions
-require("telescope").setup {
+local fb_actions = require("telescope").extensions.file_browser.actions
+require("telescope").setup({
   defaults = {
     layout_strategy = "vertical",
     sorting_strategy = "ascending",
@@ -283,7 +285,7 @@ require("telescope").setup {
       },
     },
   },
-}
+})
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("file_browser")
 
@@ -334,6 +336,36 @@ require("formatter").setup({
 
 require("Comment").setup()
 
+require("which-key").setup({
+  preset = "modern",
+  sort = { "manual" },
+  spec = {
+    { "<leader>ff", icon = "󰭎'", desc = "Find File", mode = "n" },
+    { "<leader>fb", icon = "󰭎'", desc = "Open File Browser", mode = "n" },
+    { "<leader>lg", icon = "󰭎'", desc = "Live grep", mode = "n" },
+    { "<leader>ct", icon = "󰭎'", desc = "Grep string", mode = "n" },
+    { "<leader>cs", icon = "󰭎'", desc = "List LSP references", mode = "n" },
+    { "<leader>cc", icon = "󰭎'", desc = "List LSP incoming calls", mode = "n" },
+    { "<leader>cg", icon = "󰭎'", desc = "Goto the definition", mode = "n" },
+    { "<leader>hs", icon = "󰊢", desc = "Stage hunk", mode = "n" },
+    { "<leader>hr", icon = "󰊢", desc = "Reset hunk", mode = "n" },
+    { "<leader>hS", icon = "󰊢", desc = "Stage buffer", mode = "n" },
+    { "<leader>hu", icon = "󰊢", desc = "Undo stage hunk", mode = "n" },
+    { "<leader>hR", icon = "󰊢", desc = "Reset buffer", mode = "n" },
+    { "<leader>hb", icon = "󰊢", desc = "Blame line", mode = "n" },
+    { "<leader>hd", icon = "󰊢", desc = "Diff this", mode = "n" },
+    { "<leader>tb", hidden = true },
+    { "<leader>td", hidden = true },
+    { "<leader>hp", hidden = true },
+    { "]c", desc = "Next hunk", mode = "n" },
+    { "[c", desc = "Prev hunk", mode = "n" },
+    { "]d", desc = "Next diagnostic", mode = "n" },
+    { "[d", desc = "Prev diagnostic", mode = "n" },
+    { "<C-W>d", desc = "Open diagnostic", mode = "n" },
+    { "<leader>p", desc = "Toggle paste mode", mode = "n" },
+  },
+})
+
 -----------------------
 -- Mapping
 -----------------------
@@ -350,6 +382,7 @@ vim.keymap.set("n", "<A-j>", "<Cmd>wincmd j<CR>")
 -- Save and close the buffer
 vim.keymap.set("n", ",w", "<Cmd>BufferClose<CR>")
 
+vim.keymap.set("n", "<F1>", "<Cmd>WhichKey<CR>")
 vim.keymap.set("n", "<F2>", "<Cmd>w!<CR>")
 vim.keymap.set("n", "<F3>", "<Cmd>:TagbarToggle<CR>")
 vim.keymap.set("n", "<F4>", "<Cmd>NvimTreeToggle<CR>")

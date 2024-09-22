@@ -1,3 +1,3 @@
 
 setlocal textwidth=79
-setlocal formatoptions=tcqj
+setlocal formatoptions=ntcqj

@@ -169,7 +169,7 @@ local servers = {
 
 ## Basic Usage
 
-* `F1`: Empty
+* `F1`: Which key that shows key mappings
 
 * `F2`: Save the current file
 
