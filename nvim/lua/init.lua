@@ -149,6 +149,27 @@ for _, lsp in ipairs(servers) do
     --root_dir = lspconfig.util.root_pattern('.git', vim.fn.getcwd()),
   })
 end
+lspconfig["efm"].setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  handlers = handlers,
+  filetypes = { "sh" },
+
+  --root_dir = lspconfig.util.root_pattern('.git', vim.fn.getcwd()),
+})
+
+require("lint").linters_by_ft = {
+  c = { "clangtidy", "cppcheck" },
+  cpp = { "clangtidy", "cppcheck" },
+}
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+  callback = function()
+    -- try_lint without arguments runs the linters defined in `linters_by_ft`
+    -- for the current filetype
+    require("lint").try_lint()
+  end,
+})
 
 local cmp = require("cmp")
 cmp.setup({
@@ -291,19 +312,6 @@ require("telescope").load_extension("file_browser")
 
 vim.cmd("let g:mwDefaultHighlightingPalette = 'maximum'")
 
-require("lint").linters_by_ft = {
-  c = { "clangtidy" },
-  cpp = { "clangtidy" },
-}
-
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
-  callback = function()
-    -- try_lint without arguments runs the linters defined in `linters_by_ft`
-    -- for the current filetype
-    require("lint").try_lint()
-  end,
-})
-
 require("diffview").setup({
   view = {
     merge_tool = {
@@ -384,7 +392,7 @@ vim.keymap.set("n", ",w", "<Cmd>BufferClose<CR>")
 
 vim.keymap.set("n", "<F1>", "<Cmd>WhichKey<CR>")
 vim.keymap.set("n", "<F2>", "<Cmd>w!<CR>")
-vim.keymap.set("n", "<F3>", "<Cmd>:TagbarToggle<CR>")
+vim.keymap.set("n", "<F3>", "<Cmd>TagbarToggle<CR>")
 vim.keymap.set("n", "<F4>", "<Cmd>NvimTreeToggle<CR>")
 vim.keymap.set("n", "<F5>", function()
   if next(require("diffview.lib").views) == nil then
@@ -406,7 +414,7 @@ local builtin = require("telescope.builtin")
 -- Lists files in your current working directory, respects .gitignore
 vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
 -- Execute File browser
-vim.keymap.set("n", "<leader>fb", ":Telescope file_browser<CR>")
+vim.keymap.set("n", "<leader>fb", "<Cmd>Telescope file_browser<CR>")
 -- Search for a string in your current working directory and get results live as you type
 vim.keymap.set("n", "<leader>lg", builtin.live_grep, {})
 -- Searches for the string under your cursor or selection in your current working directory
