@@ -159,8 +159,8 @@ lspconfig["efm"].setup({
 })
 
 require("lint").linters_by_ft = {
-  c = { "clangtidy", "cppcheck" },
-  cpp = { "clangtidy", "cppcheck" },
+  c = { "clangtidy" },
+  cpp = { "clangtidy" },
 }
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
