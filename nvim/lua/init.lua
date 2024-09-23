@@ -33,18 +33,19 @@ Plug("nvim-lualine/lualine.nvim")
 Plug("romgrk/barbar.nvim")
 Plug("williamboman/mason.nvim")
 Plug("williamboman/mason-lspconfig.nvim")
+Plug("WhoIsSethDaniel/mason-tool-installer.nvim")
 Plug("neovim/nvim-lspconfig")
 Plug("nvim-lua/plenary.nvim")
 Plug("nvim-telescope/telescope.nvim")
-Plug("preservim/tagbar")
-Plug("ayuanx/vim-mark-standalone")
-Plug("mfussenegger/nvim-lint")
-Plug("sindrets/diffview.nvim")
+Plug("nvim-telescope/telescope-file-browser.nvim")
 Plug(
   "nvim-telescope/telescope-fzf-native.nvim",
   { ["do"] = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release" }
 )
-Plug("nvim-telescope/telescope-file-browser.nvim")
+Plug("preservim/tagbar")
+Plug("ayuanx/vim-mark-standalone")
+Plug("mfussenegger/nvim-lint")
+Plug("sindrets/diffview.nvim")
 Plug("mhartington/formatter.nvim")
 Plug("numToStr/Comment.nvim")
 Plug("folke/which-key.nvim")
@@ -112,6 +113,33 @@ require("mason").setup({
   },
 })
 require("mason-lspconfig").setup()
+require("mason-tool-installer").setup({
+  ensure_installed = {
+    "clangd",
+    "rust_analyzer",
+    "pylsp",
+    "lua_ls",
+    "cmake",
+    "efm",
+  },
+})
+vim.api.nvim_create_autocmd("User", {
+  pattern = "MasonToolsStartingInstall",
+  callback = function()
+    vim.schedule(function()
+      print("mason-tool-installer is starting")
+    end)
+  end,
+})
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "MasonToolsUpdateCompleted",
+  callback = function(e)
+    vim.schedule(function()
+      print(vim.inspect(e.data)) -- print the table that lists the programs that were installed
+    end)
+  end,
+})
 
 -- vim.diagnostic.disable()
 -- Add border to the diagnostic popup window
@@ -169,6 +197,27 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
     -- for the current filetype
     require("lint").try_lint()
   end,
+})
+
+require("formatter").setup({
+  filetype = {
+    lua = {
+      require("formatter.filetypes.lua").stylua,
+    },
+    c = {
+      require("formatter.filetypes.c").clangformat,
+    },
+    cpp = {
+      require("formatter.filetypes.cpp").clangformat,
+    },
+    python = {
+      require("formatter.filetypes.python").autopep8,
+    },
+    ["*"] = {
+      -- Delete trailing spaces at eol when a file is saved.
+      require("formatter.filetypes.any").remove_trailing_whitespace,
+    },
+  },
 })
 
 local cmp = require("cmp")
@@ -317,27 +366,6 @@ require("diffview").setup({
     merge_tool = {
       -- Config for conflicted files in diff views during a merge or rebase.
       layout = "diff4_mixed",
-    },
-  },
-})
-
-require("formatter").setup({
-  filetype = {
-    lua = {
-      require("formatter.filetypes.lua").stylua,
-    },
-    c = {
-      require("formatter.filetypes.c").clangformat,
-    },
-    cpp = {
-      require("formatter.filetypes.cpp").clangformat,
-    },
-    python = {
-      require("formatter.filetypes.python").autopep8,
-    },
-    ["*"] = {
-      -- Delete trailing spaces at eol when a file is saved.
-      require("formatter.filetypes.any").remove_trailing_whitespace,
     },
   },
 })
