@@ -46,7 +46,7 @@ Plug("preservim/tagbar")
 Plug("ayuanx/vim-mark-standalone")
 Plug("mfussenegger/nvim-lint")
 Plug("sindrets/diffview.nvim")
-Plug("mhartington/formatter.nvim")
+Plug("stevearc/conform.nvim")
 Plug("numToStr/Comment.nvim")
 Plug("folke/which-key.nvim")
 Plug("echasnovski/mini.icons")
@@ -199,26 +199,32 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
   end,
 })
 
-require("formatter").setup({
-  filetype = {
-    lua = {
-      require("formatter.filetypes.lua").stylua,
-    },
-    c = {
-      require("formatter.filetypes.c").clangformat,
-    },
-    cpp = {
-      require("formatter.filetypes.cpp").clangformat,
-    },
-    python = {
-      require("formatter.filetypes.python").autopep8,
-    },
-    ["*"] = {
-      -- Delete trailing spaces at eol when a file is saved.
-      require("formatter.filetypes.any").remove_trailing_whitespace,
-    },
+require("conform").setup({
+  formatters_by_ft = {
+    lua = { "stylua" },
+    python = { "autopep8" },
+    c = { "clang-format" },
+    cpp = { "clang-format" },
+    ["*"] = { "trim_whitespace" },
+  },
+  default_format_opts = {
+    lsp_format = "always",
   },
 })
+vim.api.nvim_create_user_command("Format", function(args)
+  local range = nil
+  if args.count ~= -1 then
+    local end_line = vim.api.nvim_buf_gt_lines(0, args.line2 - 1, args.line2, true)[1]
+    range = {
+      start = { args.line1, 0 },
+      ["end"] = { args.line2, end_line:len() },
+    }
+  end
+  require("conform").format({
+    async = false,
+    range = range,
+  })
+end, { range = true })
 
 local cmp = require("cmp")
 cmp.setup({
@@ -408,6 +414,8 @@ require("which-key").setup({
 -- Move around buffers by pressing ctrl+h or ctrl+l
 vim.keymap.set("n", "<C-h>", "<Cmd>BufferPrevious<CR>")
 vim.keymap.set("n", "<C-l>", "<Cmd>BufferNext<CR>")
+
+vim.keymap.set({ "n", "v" }, "<C-k>", "<Cmd>Format<CR>")
 
 -- Move between split windows
 vim.keymap.set("n", "<A-h>", "<Cmd>wincmd h<CR>")

@@ -74,14 +74,6 @@ syntax on
 
 set guicursor=
 
-" Delete trailing spaces at eol when a file is saved.
-func! DeleteTrailingWS()
-    exe "normal mz"
-    %s/\s\+$//ge
-    exe "normal `z"
-endfunc
-autocmd BufWrite * :call DeleteTrailingWS()
-
 " Locate the cursor in the last position when Vim is closed
 au BufReadPost *
 \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -165,8 +157,6 @@ vmap <S-Tab> <gv
 " you're done with pasting.
 map <leader>p :set invpaste paste?<CR>
 set pastetoggle=<leader>p
-
-map <C-K> :py3f ~/.config/nvim/clang-format.py<cr>
 
 " Must be located at the end of init.vim
 lua require('init')
