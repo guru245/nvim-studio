@@ -138,11 +138,9 @@ Note https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
 or
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 nvim <-- Ignore errors that you see while running nvim.
-:PluginInstall in nvim
-:qa
-nvim <-- Ignore an error that you see while running nvim
-:LspInstall lua_ls
-:LspInstall clangd
+:PlugInstall <-- in nvim commandline
+:q
+nvim <-- Ignore an error for now. Move onto the next Chapter
 ```
 
 
@@ -151,7 +149,11 @@ nvim <-- Ignore an error that you see while running nvim
 
 Before you dive in, you need to understand how to utilize LSP (Language Server Protocol). To fully utilize LSP, you need to create `compile_commands.json`. `compile_commands.json` can be created by *bear*. You can [see how to use *bear*](https://github.com/rizsotto/Bear?tab=readme-ov-file#how-to-use). When you succeed in creating the json file, you are ready to move on.
 
-Next, you must install a language server that fits your needs. While installing NVIM studio, you've seen `:LSPInstall clangd`. The LSP is used for C and C++. If you want to use the other programming language, you need to install the other LSP that supports the language. You can find the list [here](https://github.com/williamboman/mason-lspconfig.nvim?tab=readme-ov-file#available-lsp-servers).
+Next, you must install a language server that fits your needs. Run `:Mason` in the nvim commandline. Just then, you will see the following screen.
+
+![mason](./.img/mason.png)
+
+You can select a LSP that you want to install by pressing `i`. If you encounter an error, read the error message. You might need to install some dependent packages such as *python3.10-venv*, etc. 
 
 After installing the LSP, you need to specify the LSP name in init.lua as follows:
 
@@ -162,6 +164,7 @@ local servers = {
   'pylsp',
   'lua_ls',
   'cmake',
+  'efm',
 }
 ```
 
