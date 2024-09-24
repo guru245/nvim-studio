@@ -208,7 +208,7 @@ require("conform").setup({
     ["*"] = { "trim_whitespace" },
   },
   default_format_opts = {
-    lsp_format = "always",
+    lsp_format = "never",
   },
 })
 vim.api.nvim_create_user_command("Format", function(args)
