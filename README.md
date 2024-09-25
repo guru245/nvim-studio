@@ -134,13 +134,7 @@ git clone https://github.com/guru245/nvim-studio.git
 cd
 mkdir .config
 ln -s ~/.local/src/nvim-studio/nvim ~/.config/nvim/
-Note https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
-or
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-nvim <-- Ignore errors that you see while running nvim.
-:PlugInstall <-- in nvim commandline
-:q
-nvim <-- Ignore an error for now. Move onto the next Chapter
+nvim 
 ```
 
 
