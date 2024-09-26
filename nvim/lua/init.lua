@@ -105,7 +105,13 @@ require("nvim-treesitter.configs").setup({
 
 vim.cmd.colorscheme("catppuccin")
 require("ibl").setup()
-require("lualine").setup()
+require("lualine").setup({
+  extensions = {
+    "nvim-tree",
+    "man",
+    "mason",
+  },
+})
 local border = "rounded"
 require("mason").setup({
   ui = {
