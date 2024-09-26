@@ -30,6 +30,7 @@ Plug("nvim-tree/nvim-web-devicons")
 Plug("nvim-tree/nvim-tree.lua")
 Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
 Plug("nvim-lualine/lualine.nvim")
+Plug("arkav/lualine-lsp-progress")
 Plug("romgrk/barbar.nvim")
 Plug("williamboman/mason.nvim")
 Plug("williamboman/mason-lspconfig.nvim")
@@ -103,15 +104,30 @@ require("nvim-treesitter.configs").setup({
   },
 })
 
+-- Plug("catppuccin/nvim", { ["as"] = "catppuccin" })
 vim.cmd.colorscheme("catppuccin")
+
+-- Plug("lukas-reineke/indent-blankline.nvim")
 require("ibl").setup()
+
+-- Plug("nvim-lualine/lualine.nvim")
 require("lualine").setup({
+  sections = {
+    lualine_c = {
+      "filename",
+      {
+        "lsp_progress",
+        display_components = { "lsp_client_name", { "title", "percentage", "message" } },
+      },
+    },
+  },
   extensions = {
     "nvim-tree",
     "man",
     "mason",
   },
 })
+
 local border = "rounded"
 require("mason").setup({
   ui = {
