@@ -51,6 +51,7 @@ Plug("stevearc/conform.nvim")
 Plug("numToStr/Comment.nvim")
 Plug("folke/which-key.nvim")
 Plug("echasnovski/mini.icons")
+Plug("brenoprata10/nvim-highlight-colors")
 
 -- All of your Plugins must be added before the following line
 -- :PlugInstall to install the plugins
@@ -111,6 +112,11 @@ vim.cmd.colorscheme("catppuccin")
 require("ibl").setup()
 
 -- Plug("nvim-lualine/lualine.nvim")
+-- Color for highlights
+local colors = {
+  green = "#98be65",
+  blue = "#51afef",
+}
 require("lualine").setup({
   sections = {
     lualine_c = {
@@ -118,6 +124,14 @@ require("lualine").setup({
       {
         "lsp_progress",
         display_components = { "lsp_client_name", { "title", "percentage", "message" } },
+        colors = {
+          percentage = colors.blue,
+          title = colors.blue,
+          message = colors.blue,
+          spinner = colors.blue,
+          lsp_client_name = colors.green,
+          use = true,
+        },
       },
     },
   },
@@ -248,6 +262,7 @@ vim.api.nvim_create_user_command("Format", function(args)
   })
 end, { range = true })
 
+require("nvim-highlight-colors").setup({})
 local cmp = require("cmp")
 cmp.setup({
   snippet = {
@@ -275,6 +290,9 @@ cmp.setup({
     -- { name = 'ultisnips' }, -- For ultisnips users.
     -- { name = 'snippy' }, -- For snippy users.
   }),
+  formatting = {
+    format = require("nvim-highlight-colors").format,
+  },
 })
 
 cmp.setup.cmdline({ "/", "?" }, {
