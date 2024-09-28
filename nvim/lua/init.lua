@@ -29,7 +29,7 @@ Plug("hrsh7th/vim-vsnip")
 Plug("nvim-tree/nvim-web-devicons")
 Plug("nvim-tree/nvim-tree.lua")
 Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
-Plug("nvim-lualine/lualine.nvim")
+Plug("guru245/lualine.nvim")
 Plug("arkav/lualine-lsp-progress")
 Plug("romgrk/barbar.nvim")
 Plug("williamboman/mason.nvim")
@@ -139,6 +139,7 @@ require("lualine").setup({
     "nvim-tree",
     "man",
     "mason",
+    "tagbar",
   },
 })
 
@@ -314,7 +315,9 @@ cmp.setup.cmdline(":", {
 
 vim.cmd("let g:tagbar_left = 1")
 vim.cmd("let g:tagbar_width = 30")
-vim.cmd("let g:tagbar_sort = 0")
+vim.cmd("let g:tagbar_sort = 1")
+vim.cmd("let g:tagbar_autofocus = 1")
+vim.cmd("let g:tagbar_autoclose = 1")
 
 require("gitsigns").setup({
   numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
