@@ -107,16 +107,21 @@ require("nvim-treesitter.configs").setup({
 
 -- Plug("catppuccin/nvim", { ["as"] = "catppuccin" })
 vim.cmd.colorscheme("catppuccin")
+--[[ require("catppuccin").setup({
+  integrations = {
+    barbar = true,
+    diffview = true,
+    mason = true,
+    which_key = true,
+  }
+}) ]]
 
 -- Plug("lukas-reineke/indent-blankline.nvim")
 require("ibl").setup()
 
 -- Plug("nvim-lualine/lualine.nvim")
--- Color for highlights
-local colors = {
-  green = "#98be65",
-  blue = "#51afef",
-}
+-- Colors per colorscheme
+local colors = require("catppuccin.palettes").get_palette("macchiato")
 require("lualine").setup({
   sections = {
     lualine_c = {
@@ -125,11 +130,11 @@ require("lualine").setup({
         "lsp_progress",
         display_components = { "lsp_client_name", { "title", "percentage", "message" } },
         colors = {
-          percentage = colors.blue,
-          title = colors.blue,
-          message = colors.blue,
-          spinner = colors.blue,
-          lsp_client_name = colors.green,
+          percentage = colors.yellow,
+          title = colors.yellow,
+          message = colors.yellow,
+          spinner = colors.yellow,
+          lsp_client_name = colors.yellow,
           use = true,
         },
       },
