@@ -78,7 +78,6 @@ local function my_on_attach(bufnr)
   --vim.keymap.set('n', '<F12>',  api.tree.change_root_to_parent, opts('Up'))
   vim.keymap.set("n", "?", api.tree.toggle_help, opts("Help"))
 end
-
 require("nvim-tree").setup({
   on_attach = my_on_attach,
   respect_buf_cwd = true,
@@ -318,6 +317,7 @@ cmp.setup.cmdline(":", {
   matching = { disallow_symbol_nonprefix_matching = false },
 })
 
+-- Plug("preservim/tagbar")
 vim.cmd("let g:tagbar_left = 1")
 vim.cmd("let g:tagbar_width = 30")
 vim.cmd("let g:tagbar_sort = 1")
@@ -413,6 +413,7 @@ require("telescope").setup({
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("file_browser")
 
+-- require("nvim-tree").setup({
 vim.cmd("let g:mwDefaultHighlightingPalette = 'maximum'")
 
 require("diffview").setup({
@@ -457,7 +458,7 @@ require("which-key").setup({
 })
 
 -----------------------
--- Mapping
+-- Mappings
 -----------------------
 -- Move around buffers by pressing ctrl+h or ctrl+l
 vim.keymap.set("n", "<C-h>", "<Cmd>BufferPrevious<CR>")
