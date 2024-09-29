@@ -4,41 +4,12 @@ scripte utf-8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Revert all command settings before proceeding with other settings below
-"set all&
-
-" Work in Vim compatible not Vi compatible
-set nocompatible
-
-" Keep 50 commands and 50 search patterns in the history.
-" 50 is undo limit.
-set history=100
-
-" No need to understand this. Leave this when using Vim.
-set magic
-
-" No swap file. It's messy.
-set noswapfile
-
-" No backup file. You take your risk on your own.
-set nobackup
-
 " Turn on plugin and indent, depending on file type
 filetype plugin indent on
 
 " Wait for a key code forever.
 " Wait for a mapped key sequence to complete within ttimeoutlen.
 set notimeout ttimeout
-
-" In Milliseconds
-set timeoutlen=3000 ttimeoutlen=100
-
-" Not redraw while executing macros, and commands.
-set lazyredraw
-
-"set visualbell
-
-" set mouse=a
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -68,9 +39,6 @@ set nowrap
 " Move the cursor to the first non-blank of the line when Vim
 " move commands are used.
 set startofline
-
-" Turn on syntax highlighting
-syntax on
 
 set guicursor=
 
