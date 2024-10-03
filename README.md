@@ -98,7 +98,7 @@ You should set up a good environment to make your NVIM life easier. NVIM Studio 
    tmux
    ```
 
-   Press `<leader>a`, i.e., `Ctrl+a` and then press `I` (captital) to install tmux plugins. You may want to run [`truecolor-test`](https://github.com/guru245/dotfiles/blob/main/truecolor-test) to check if true color is working correctly.
+   Press `<leader>`, i.e., `Ctrl+a` in this setting and then press `I` (captital) to install tmux plugins. You may want to run [`truecolor-test`](https://github.com/guru245/dotfiles/blob/main/truecolor-test) to check if true color is working correctly.
 
 4. Install misc packages for Neovim
 
@@ -134,7 +134,7 @@ git clone https://github.com/guru245/nvim-studio.git
 cd
 mkdir .config
 ln -s ~/.local/src/nvim-studio/nvim ~/.config/nvim/
-nvim <- Ignore some errors at first run. It will disappear in the next run.
+nvim <- Ignore some errors on the first run. It will disappear in the next run.
 ```
 
 
