@@ -91,8 +91,8 @@ You should set up a good environment to make your NVIM life easier. NVIM Studio 
 
    ```bash
    cd
-   wget https://github.com/guru245/dotfiles/blob/main/.tmux.conf
-   wget https://github.com/guru245/dotfiles/blob/main/truecolor-test
+   wget https://raw.githubusercontent.com/guru245/dotfiles/refs/heads/main/.tmux.conf
+   wget https://raw.githubusercontent.com/guru245/dotfiles/refs/heads/main/truecolor-test
    cd ~/.local/src
    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
    tmux
