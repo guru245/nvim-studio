@@ -53,6 +53,7 @@ Plug("numToStr/Comment.nvim")
 Plug("folke/which-key.nvim")
 Plug("echasnovski/mini.icons")
 Plug("brenoprata10/nvim-highlight-colors")
+Plug("nvim-treesitter/nvim-treesitter-context")
 
 -- All of your Plugins must be added before the following line
 -- :PlugInstall to install the plugins
@@ -456,6 +457,8 @@ require("which-key").setup({
     { "<leader>p", desc = "Toggle paste mode", mode = "n" },
   },
 })
+
+require("treesitter-context").setup({})
 
 -----------------------
 -- Mappings
