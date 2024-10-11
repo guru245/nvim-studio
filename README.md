@@ -1,8 +1,13 @@
 # NVIM Studio
 
-If you are a VS Code user, I won’t say anything. However, if you are a Vim user, you must use Neovim. The reason is that Neovim provides better plugins, better UI, and most importantly LSP support. It’s not a stretch to say that Neovim is the future. 
+If you are a VS Code user, I won’t say anything. However, if you are a Vim
+user, you must use Neovim. The reason is that Neovim provides better plugins,
+better UI, and most importantly LSP support. It’s not a stretch to say that
+Neovim is the future.
 
-That being said, Neovim has a steep learning curve even for Vim experts. This is where NVIM studio comes in.  NVIM studio will help you understand how to set up Neovim, providing a basic platform to foster your own setting.
+That being said, Neovim has a steep learning curve even for Vim experts. This
+is where NVIM studio comes in. NVIM studio will help you understand how to set
+up Neovim, providing a basic platform to foster your own setting.
 
 ![overview](./.img/overview.png)
 
@@ -43,22 +48,31 @@ That being said, Neovim has a steep learning curve even for Vim experts. This is
 
 ## Prerequisites
 
-You should set up a good environment to make your NVIM life easier. NVIM Studio is running in the following environments:
+You should set up a good environment to make your NVIM life easier. NVIM Studio
+is running in the following environments:
 
 * Ubuntu 20.04 or above
 
 * [Windows Terminal](https://docs.microsoft.com/en-us/windows/terminal/get-started)
 
-* Set [CaskaydiaCoveNerdFont-Regular.ttf](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/CascadiaCode.zip) by default to your terminal.
+* Set
+  [CaskaydiaCoveNerdFont-Regular.ttf](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/CascadiaCode.zip)
+  by default to your terminal.
 
 
 
 ## Setting up the Environment
 
-1. Install the following packages. It could be a overkill to install all packages. Some of them might not be necessary depending on your environment. However, note that if you encounter any unexpected symptom throughout this guide, come back here and see what is missing.
+1. Install the following packages. It could be a overkill to install all
+   packages. Some of them might not be necessary depending on your environment.
+   However, note that if you encounter any unexpected symptom throughout this
+   guide, come back here and see what is missing.
 
    ```bash
-   sudo apt install ssh keychain make cmake python3-cryptography clang-format automake autoconf pkg-config python3-pip clang libtool-bin npm curl build-essential unzip gettext ninja-build clang-tidy
+   sudo apt install ssh keychain make cmake python3-cryptography \
+   clang-format automake autoconf pkg-config python3-pip clang \ 
+   libtool-bin npm curl build-essential unzip gettext ninja-build \
+   clang-tidy
    ```
 
 2. Install [universal-ctags](https://github.com/universal-ctags/ctags)
@@ -76,14 +90,23 @@ You should set up a good environment to make your NVIM life easier. NVIM Studio 
 
 3. Install tmux
 
-   I strongly recommend using tmux if you haven't already. If you have a root privilege, `sudo apt install tmux` will do. If the version is lower than 3.2a in your Ubuntu or if you don't have a root privilege, you may as well build tmux >= 3.2a to enjoy true color. libevent and ncurses are prerequisites. See [this page](https://github.com/tmux/tmux/wiki/Installing). I describe the tmux build command as an example as follows:
+   I strongly recommend using tmux if you haven't already. If you have a root
+   privilege, `sudo apt install tmux` will do. If the version is lower 
+   than 3.2a in your Ubuntu or if you don't have a root privilege, you may 
+   as well build tmux >= 3.2a to enjoy true color. libevent and ncurses are
+   prerequisites. See [this page](https://github.com/tmux/tmux/wiki/Installing). 
+   I describe the tmux build command as an example as follows:
 
    ```bash
    cd ~/.local/src
    git clone https://github.com/tmux/tmux.git
    cd tmux
    ./autogen.sh
-   ./configure --prefix=${ROOT_DIR}/.local CFLAGS="-I${ROOT_DIR}/.local/include -I${ROOT_DIR}/.local/include/ncurses" LDFLAGS="-L${ROOT_DIR}/.local/include -L${ROOT_DIR}/.local/include/ncurses -L${ROOT_DIR}/.local/lib"
+   ./configure --prefix=${HOME}/.local \ 
+   CFLAGS="-I${HOME}/.local/include \
+   -I${HOME}/.local/include/ncurses" \
+   LDFLAGS="-L${HOME}/.local/include \
+   -L${HOME}/.local/include/ncurses -L${HOME}/.local/lib"
    make && make install
    ```
 
@@ -98,7 +121,10 @@ You should set up a good environment to make your NVIM life easier. NVIM Studio 
    tmux
    ```
 
-   Press `<leader>`, i.e., `Ctrl+a` in this setting and then press `I` (captital) to install tmux plugins. You may want to run [`truecolor-test`](https://github.com/guru245/dotfiles/blob/main/truecolor-test) to check if true color is working correctly.
+   Press `<leader>`, i.e., `Ctrl+a` in this setting and then press `I`
+   (capital) to install tmux plugins. You may want to run 
+   [`truecolor-test`](https://github.com/guru245/dotfiles/blob/main/truecolor-test) 
+   to check if true color is working correctly.
 
 4. Install misc packages for Neovim
 
@@ -119,7 +145,7 @@ cd neovim
 git checkout tags/v0.10.1
 make distclean <- if necessary
 make deps <- if necessary
-make CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/.local" CMAKE_BUILD_TYPE=Release
+make CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=${HOME}/.local" CMAKE_BUILD_TYPE=Release
 make install
 pip3 install pynvim
 ```
@@ -141,13 +167,20 @@ nvim <- Ignore some errors on the first run. It will disappear in the next run.
 
 ## Setting up LSP
 
-Before you dive in, you need to understand how to utilize LSP (Language Server Protocol). To fully utilize LSP, you need to create `compile_commands.json`. `compile_commands.json` can be created by *bear*. You can [see how to use *bear*](https://github.com/rizsotto/Bear?tab=readme-ov-file#how-to-use). When you succeed in creating the json file, you are ready to move on.
+Before you dive in, you need to understand how to utilize LSP 
+(Language Server Protocol). To fully utilize LSP, you need to create 
+`compile_commands.json`. `compile_commands.json` can be created by *bear*. 
+You can [see how to use *bear*](https://github.com/rizsotto/Bear?tab=readme-ov-file#how-to-use). 
+When you succeed in creating the json file, you are ready to move on.
 
-Next, you must install a language server that fits your needs. Run `:Mason` in the nvim commandline. Just then, you will see the following screen.
+Next, you must install a language server that fits your needs. Run `:Mason` 
+in the nvim commandline. Just then, you will see the following screen.
 
 ![mason](./.img/mason.png)
 
-You can select a LSP that you want to install by pressing `i`. If you encounter an error, read the error message. You might need to install some dependent packages such as *python3.10-venv*, etc. 
+You can select a LSP that you want to install by pressing `i`. If you encounter
+an error, read the error message. You might need to install some dependent
+packages such as *python3.10-venv*, etc. 
 
 After installing the LSP, you need to specify the LSP name in init.lua as follows:
 
@@ -230,7 +263,10 @@ This plugin is convenient to stage, reset and navigate hunks. Check out the [key
 
 ## Diffview Usage
 
-Diffview allows you to cycle through diffs for all modified files for any git rev, not to mention super convenient to resolve all conflicts. You can start Diffview by pressing `<F5>`. Once you get in, you can press `g?` to see all mappings.
+Diffview allows you to cycle through diffs for all modified files for any git
+rev, not to mention super convenient to resolve all conflicts. You can start
+Diffview by pressing `<F5>`. Once you get in, you can press `g?` to see all 
+mappings.
 
 
 
@@ -257,6 +293,8 @@ Telescope helps you navigate the code. To perform telescope searching, refer to 
 | `<leader>cc` | Lists LSP incoming calls for word under the cursor |
 | `<leader>ct` | Searches for the string under your cursor or selection in your current working directory |
 
-For the file browser mappings, see [here](https://github.com/nvim-telescope/telescope-file-browser.nvim?tab=readme-ov-file#mappings). Note that `goto_parent_dir` is mapped to `u` due to the conflict between Telescope and file browser. The bug report has been submitted.
+For the file browser mappings, see [here](https://github.com/nvim-telescope/telescope-file-browser.nvim?tab=readme-ov-file#mappings). 
+Note that `goto_parent_dir` is mapped to `u` due to the conflict between
+Telescope and file browser. The bug report has been submitted.
 
 For the other Telescope mappings, see [here](https://github.com/nvim-telescope/telescope.nvim?tab=readme-ov-file#default-mappings).
