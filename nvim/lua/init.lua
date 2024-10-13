@@ -1,5 +1,5 @@
 -----------------------
--- General
+-- Vim General Options
 -----------------------
 vim = vim
 -- disable netrw at the very start of your init.lua
@@ -9,6 +9,69 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.cursorline = true
+vim.opt.number = true
+vim.opt.numberwidth = 5
+vim.opt.wrap = false
+
+-- Move the cursor to the first non-blank of the line when Vim
+-- move commands are used.
+vim.opt.startofline = true
+
+vim.opt.guicursor = ""
+
+-- Wait for a key code forever.
+-- Wait for a mapped key sequence to complete within ttimeoutlen.
+vim.opt.timeout = false
+
+-- Tell Vim to delete the white space at the start of the line, a line break
+-- and the character before where Insert mode started.
+vim.opt.backspace = "indent,eol,start"
+
+-- Set tab size
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+
+-- Use spaces instead of tabs
+vim.opt.expandtab = true
+
+-- Work for C-like programs, but can also be used for other languages
+vim.opt.smartindent = true
+
+-- Copy indent from current line when starting a new line. This should be
+-- on when smartindent is used.
+vim.opt.autoindent = true
+
+-- Set indent for switch statement in C. Just my cup of tea.
+vim.opt.cinoptions = ":0"
+
+-- Determine the 'fileencoding' of a file being opened.
+vim.opt.fileencodings = "utf-8,cp949,cp932,euc-kr,shift-jis,big5,ucs-2le,latin"
+
+-- Represent data in memory
+vim.opt.encoding = "utf-8"
+
+-- Use only unix fileformat. "dos" can be added like "unix, dos"
+vim.opt.fileformats = "unix"
+
+-----------------------
+-- Search Options
+-----------------------
+-- Highlight all matches
+vim.opt.hlsearch = true
+
+-- Not search wrap around the end of a file
+vim.opt.wrapscan = false
+
+-- Ignore case in search patterns
+vim.opt.ignorecase = true
+
+-- Override ignorecase option if the search pattern contains an uppercase character.
+vim.opt.smartcase = true
+
+-- Jump to one to the other using %. Various character can be added.
+vim.opt.matchpairs:append("<:>")
+
 
 -----------------------
 -- Plugins
@@ -464,6 +527,10 @@ require("treesitter-context").setup({})
 -----------------------
 -- Mappings
 -----------------------
+-- Move source codes by tab size. Tab is right move and Shift+tab is left.
+vim.keymap.set("v", "<Tab>", ">gv")
+vim.keymap.set("v", "<S-Tab>", "<gv")
+
 -- Move around buffers by pressing ctrl+h or ctrl+l
 vim.keymap.set("n", "<C-h>", "<Cmd>BufferPrevious<CR>")
 vim.keymap.set("n", "<C-l>", "<Cmd>BufferNext<CR>")
