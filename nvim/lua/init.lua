@@ -6,6 +6,10 @@ vim = vim
 -- This is requested by nvim-tree.
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+-- Turn on plugin and indent, depending on file type
+vim.cmd("filetype plugin on")
+
 vim.opt.termguicolors = true
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.cursorline = true
@@ -25,7 +29,7 @@ vim.opt.timeout = false
 
 -- Tell Vim to delete the white space at the start of the line, a line break
 -- and the character before where Insert mode started.
-vim.opt.backspace = "indent,eol,start"
+vim.o.backspace = "indent,eol,start"
 
 -- Set tab size
 vim.opt.tabstop = 4
@@ -46,7 +50,7 @@ vim.opt.autoindent = true
 vim.opt.cinoptions = ":0"
 
 -- Determine the 'fileencoding' of a file being opened.
-vim.opt.fileencodings = "utf-8,cp949,cp932,euc-kr,shift-jis,big5,ucs-2le,latin"
+vim.o.fileencodings = "utf-8,cp949,cp932,euc-kr,shift-jis,big5,ucs-2le,latin"
 
 -- Represent data in memory
 vim.opt.encoding = "utf-8"

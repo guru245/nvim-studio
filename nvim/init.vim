@@ -1,16 +1,4 @@
-scripte utf-8
-" vim: set fenc=utf-8 tw=0:
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" General
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn on plugin and indent, depending on file type
-filetype plugin indent on
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Editing
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Locate the cursor in the last position when Vim is closed
 au BufReadPost *
 \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -29,7 +17,6 @@ map <leader>p :set invpaste paste?<CR>
 set pastetoggle=<leader>p
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Install vim-plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
