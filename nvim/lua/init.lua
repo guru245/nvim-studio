@@ -8,7 +8,7 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- Turn on plugin and indent, depending on file type
-vim.cmd("filetype plugin on")
+vim.cmd("filetype plugin indent on")
 
 vim.opt.termguicolors = true
 vim.opt.clipboard:append("unnamedplus")
@@ -75,7 +75,6 @@ vim.opt.smartcase = true
 
 -- Jump to one to the other using %. Various character can be added.
 vim.opt.matchpairs:append("<:>")
-
 
 -----------------------
 -- Plugins
@@ -391,7 +390,6 @@ vim.cmd("let g:tagbar_left = 1")
 vim.cmd("let g:tagbar_width = 30")
 vim.cmd("let g:tagbar_sort = 1")
 vim.cmd("let g:tagbar_autofocus = 1")
-vim.cmd("let g:tagbar_autoclose = 1")
 
 require("gitsigns").setup({
   numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
@@ -526,7 +524,9 @@ require("which-key").setup({
   },
 })
 
-require("treesitter-context").setup({})
+require("treesitter-context").setup({
+  trim_scope = "inner",
+})
 
 -----------------------
 -- Mappings
