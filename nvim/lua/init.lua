@@ -58,6 +58,13 @@ vim.opt.encoding = "utf-8"
 -- Use only unix fileformat. "dos" can be added like "unix, dos"
 vim.opt.fileformats = "unix"
 
+vim.cmd([[
+  augroup YankHighlight
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank({ timeout = 500 })
+  augroup END
+]])
+
 -----------------------
 -- Search Options
 -----------------------
