@@ -11,11 +11,17 @@ vim.g.loaded_netrwPlugin = 1
 vim.cmd("filetype plugin indent on")
 
 vim.opt.termguicolors = true
-vim.opt.clipboard:append("unnamedplus")
+vim.schedule(function()
+  vim.opt.clipboard = "unnamedplus"
+end)
 vim.opt.cursorline = true
 vim.opt.number = true
 vim.opt.numberwidth = 5
 vim.opt.wrap = false
+vim.opt.mouse = "a"
+
+-- Don't show the mode, since it's already in the lualine
+vim.opt.showmode = false
 
 -- Move the cursor to the first non-blank of the line when Vim
 -- move commands are used.
@@ -23,9 +29,9 @@ vim.opt.startofline = true
 
 vim.opt.guicursor = ""
 
--- Wait for a key code forever.
--- Wait for a mapped key sequence to complete within ttimeoutlen.
-vim.opt.timeout = false
+-- Decrease mapped sequence wait time
+-- Displays which-key popup sooner
+vim.opt.timeoutlen = 300
 
 -- Tell Vim to delete the white space at the start of the line, a line break
 -- and the character before where Insert mode started.
@@ -58,12 +64,19 @@ vim.opt.encoding = "utf-8"
 -- Use only unix fileformat. "dos" can be added like "unix, dos"
 vim.opt.fileformats = "unix"
 
-vim.cmd([[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank({ timeout = 500 })
-  augroup END
-]])
+vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = "Highlight when yanking (copying) text",
+  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+  callback = function()
+    vim.highlight.on_yank({ timeout = 500 })
+  end,
+})
+
+-- Minimal number of screen lines to keep above and below the cursor.
+vim.opt.scrolloff = 10
+
+-- Preview substitutions live, as you type!
+vim.opt.inccommand = "split"
 
 -----------------------
 -- Search Options
@@ -505,23 +518,21 @@ require("which-key").setup({
   preset = "modern",
   sort = { "manual" },
   spec = {
-    { "<leader>ff", icon = "󰭎'", desc = "Find File", mode = "n" },
-    { "<leader>fb", icon = "󰭎'", desc = "Open File Browser", mode = "n" },
-    { "<leader>lg", icon = "󰭎'", desc = "Live grep", mode = "n" },
-    { "<leader>ct", icon = "󰭎'", desc = "Grep string", mode = "n" },
-    { "<leader>cs", icon = "󰭎'", desc = "List LSP references", mode = "n" },
-    { "<leader>cc", icon = "󰭎'", desc = "List LSP incoming calls", mode = "n" },
-    { "<leader>cg", icon = "󰭎'", desc = "Goto the definition", mode = "n" },
-    { "<leader>hs", icon = "󰊢", desc = "Stage hunk", mode = "n" },
-    { "<leader>hr", icon = "󰊢", desc = "Reset hunk", mode = "n" },
-    { "<leader>hS", icon = "󰊢", desc = "Stage buffer", mode = "n" },
-    { "<leader>hu", icon = "󰊢", desc = "Undo stage hunk", mode = "n" },
-    { "<leader>hR", icon = "󰊢", desc = "Reset buffer", mode = "n" },
-    { "<leader>hb", icon = "󰊢", desc = "Blame line", mode = "n" },
-    { "<leader>hd", icon = "󰊢", desc = "Diff this", mode = "n" },
+    { "<leader>h", icon = "󰊢", group = "Git hunk", mode = { "n", "v" } },
+    { "<leader>hs", icon = "󰊢", desc = "Stage hunk", mode = { "n", "v" } },
+    { "<leader>hr", icon = "󰊢", desc = "Reset hunk", mode = { "n", "v" } },
+    { "<leader>hS", icon = "󰊢", desc = "Stage buffer", mode = { "n", "v" } },
+    { "<leader>hu", icon = "󰊢", desc = "Undo stage hunk", mode = { "n", "v" } },
+    { "<leader>hR", icon = "󰊢", desc = "Reset buffer", mode = { "n", "v" } },
+    { "<leader>hb", icon = "󰊢", desc = "Blame line", mode = { "n", "v" } },
     { "<leader>tb", hidden = true },
     { "<leader>td", hidden = true },
     { "<leader>hp", hidden = true },
+    { "<leader>n", hidden = true },
+    { "<leader>r", hidden = true },
+    { "<leader>c", icon = "󰭎'", group = "LSP.." },
+    { "<leader>s", group = "Search" },
+    { "<leader>d", icon = "󰊢", group = "Diffview" },
     { "]c", desc = "Next hunk", mode = "n" },
     { "[c", desc = "Prev hunk", mode = "n" },
     { "]d", desc = "Next diagnostic", mode = "n" },
@@ -538,6 +549,9 @@ require("treesitter-context").setup({
 -----------------------
 -- Mappings
 -----------------------
+-- Clear highlights on search when pressing <Esc> in normal mode
+vim.keymap.set("n", "<Esc>", "<Cmd>MarkClear<CR><Cmd>noh<CR>", { desc = "Clear highlights" })
+
 -- Move source codes by tab size. Tab is right move and Shift+tab is left.
 vim.keymap.set("v", "<Tab>", ">gv")
 vim.keymap.set("v", "<S-Tab>", "<gv")
@@ -549,10 +563,10 @@ vim.keymap.set("n", "<C-l>", "<Cmd>BufferNext<CR>")
 vim.keymap.set({ "n", "v" }, "<C-k>", "<Cmd>Format<CR>")
 
 -- Move between split windows
-vim.keymap.set("n", "<A-h>", "<Cmd>wincmd h<CR>")
-vim.keymap.set("n", "<A-l>", "<Cmd>wincmd l<CR>")
-vim.keymap.set("n", "<A-k>", "<Cmd>wincmd k<CR>")
-vim.keymap.set("n", "<A-j>", "<Cmd>wincmd j<CR>")
+vim.keymap.set("n", "<A-h>", "<Cmd>wincmd h<CR>", { desc = "Move focus to the left window" })
+vim.keymap.set("n", "<A-l>", "<Cmd>wincmd l<CR>", { desc = "Move focus to the right window" })
+vim.keymap.set("n", "<A-k>", "<Cmd>wincmd k<CR>", { desc = "Move focus to the upper window" })
+vim.keymap.set("n", "<A-j>", "<Cmd>wincmd j<CR>", { desc = "Move focus to the lower window" })
 
 -- Save and close the buffer
 vim.keymap.set("n", ",w", "<Cmd>BufferClose<CR>")
@@ -561,34 +575,26 @@ vim.keymap.set("n", "<F1>", "<Cmd>WhichKey<CR>")
 vim.keymap.set("n", "<F2>", "<Cmd>w!<CR>")
 vim.keymap.set("n", "<F3>", "<Cmd>TagbarToggle<CR>")
 vim.keymap.set("n", "<F4>", "<Cmd>NvimTreeToggle<CR>")
-vim.keymap.set("n", "<F5>", function()
-  if next(require("diffview.lib").views) == nil then
-    vim.cmd("DiffviewOpen")
-  else
-    vim.cmd("DiffviewClose")
-  end
-end)
-vim.keymap.set("n", "<F6>", function()
-  if next(require("diffview.lib").views) == nil then
-    vim.cmd("DiffviewFileHistory %")
-  else
-    vim.cmd("DiffviewClose")
-  end
-end)
-vim.keymap.set("n", "<F8>", "<Cmd>MarkClear<CR><Cmd>noh<CR>")
+
+vim.keymap.set("n", "<leader>do", "<Cmd>DiffviewOpen<CR>", { desc = "[D]iffview [O]pen" })
+vim.keymap.set("n", "<leader>df", "<Cmd>DiffviewFileHistory %<CR>", { desc = "[D]iffview [F]ile History" })
+vim.keymap.set("n", "<leader>dF", "<Cmd>DiffviewFileHistory<CR>", { desc = "[D]iffview [F]iles History" })
+vim.keymap.set("n", "<leader>dc", "<Cmd>DiffviewClose<CR>", { desc = "[D]iffview [C]lose" })
 
 local builtin = require("telescope.builtin")
+vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
+vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
 -- Lists files in your current working directory, respects .gitignore
-vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
+vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[F]ind [F]iles" })
 -- Execute File browser
-vim.keymap.set("n", "<leader>fb", "<Cmd>Telescope file_browser<CR>")
+vim.keymap.set("n", "<leader>fb", "<Cmd>Telescope file_browser<CR>", { desc = "Open [F]ile[B]rowers" })
 -- Search for a string in your current working directory and get results live as you type
-vim.keymap.set("n", "<leader>lg", builtin.live_grep, {})
+vim.keymap.set("n", "<leader>lg", builtin.live_grep, { desc = "[L]ive [G]rep" })
 -- Searches for the string under your cursor or selection in your current working directory
-vim.keymap.set("n", "<leader>ct", builtin.grep_string, {})
+vim.keymap.set("n", "<leader>ct", builtin.grep_string, { desc = "Grep string" })
 -- Lists LSP references for word under the cursor
-vim.keymap.set("n", "<leader>cs", builtin.lsp_references, {})
+vim.keymap.set("n", "<leader>cs", builtin.lsp_references, { desc = "List LSP references" })
 -- Lists LSP incoming calls for word under the cursor
-vim.keymap.set("n", "<leader>cc", builtin.lsp_incoming_calls, {})
+vim.keymap.set("n", "<leader>cc", builtin.lsp_incoming_calls, { desc = "List LSP incoming calls" })
 -- Goto the definition of the type of the word under the cursor
-vim.keymap.set("n", "<leader>cg", builtin.lsp_type_definitions, {})
+vim.keymap.set("n", "<leader>cg", builtin.lsp_type_definitions, { desc = "Goto the definition" })
