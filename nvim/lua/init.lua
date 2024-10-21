@@ -142,6 +142,7 @@ Plug("echasnovski/mini.icons")
 Plug("brenoprata10/nvim-highlight-colors")
 Plug("nvim-treesitter/nvim-treesitter-context")
 Plug("OXY2DEV/markview.nvim")
+Plug("tpope/vim-sleuth")
 
 -- All of your Plugins must be added before the following line
 -- :PlugInstall to install the plugins
