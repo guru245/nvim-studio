@@ -130,6 +130,7 @@ Plug(
   "nvim-telescope/telescope-fzf-native.nvim",
   { ["do"] = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release" }
 )
+Plug("nvim-telescope/telescope-ui-select.nvim")
 Plug("preservim/tagbar")
 Plug("ayuanx/vim-mark-standalone")
 Plug("mfussenegger/nvim-lint")
@@ -297,6 +298,10 @@ local lspconfig = require("lspconfig")
 local on_attach = function(_, _)
   print("LSP started.")
   vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+
+  -- Execute a code action, usually your cursor needs to be on top of an error
+  -- or a suggestion from your LSP for this to activate.
+  vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
 end
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup({
@@ -495,10 +500,14 @@ require("telescope").setup({
         },
       },
     },
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown(),
+    },
   },
 })
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("file_browser")
+require("telescope").load_extension("ui-select")
 
 -- require("nvim-tree").setup({
 vim.cmd("let g:mwDefaultHighlightingPalette = 'maximum'")
