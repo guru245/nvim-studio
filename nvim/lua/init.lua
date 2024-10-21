@@ -553,6 +553,7 @@ require("which-key").setup({
 })
 
 require("treesitter-context").setup({
+  max_lines = 3,
   trim_scope = "inner",
 })
 
