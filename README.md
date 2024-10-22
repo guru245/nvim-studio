@@ -207,17 +207,7 @@ local servers = {
 
 * `F4`: Toggle nvim-tree, file system explorer on the right side
 
-* `F5`: Toggle diffview that shows differences against the current index
-
-* `F6`: Toggle file history view that allows you to list all the commits.
-
-* `F7`: Empty
-
-* `F8`: Clear all marks
-
-* `F9`: Empty
-
-* `F10`: Empty
+* `Esc`: Clear all marks
 
 * `ctrl+h`, `ctrl+l`: Go to the tab on the left/right
 
@@ -265,9 +255,16 @@ This plugin is convenient to stage, reset and navigate hunks. Check out the [key
 
 Diffview allows you to cycle through diffs for all modified files for any git
 rev, not to mention super convenient to resolve all conflicts. You can start
-Diffview by pressing `<F5>`. Once you get in, you can press `g?` to see all 
+Diffview by pressing the following commands. Once you get in, you can press `g?` to see all 
 mappings.
 
+* `<leader>do`: Open diffview that shows differences against the current index
+
+* `<leader>df`: Open a file history that allows you to list all the commits.
+
+* `<leader>dF`: Open all files history view that allows you to list all the commits.
+
+* `<leader>dc`: Close diffview
 
 
 
@@ -285,9 +282,12 @@ Telescope helps you navigate the code. To perform telescope searching, refer to 
 
 | keymap | desc |
 |--------|------|
+| `<leader>sh` | Search Help |
+| `<leader>ss` | Search Select Telescope |
 | `<leader>ff` | Lists files in your current working directory, respects .gitignore |
 | `<leader>fb` | Open Telescope file browser |
 | `<leader>lg` | Search for a string in your current working directory and get results live as you type |
+| `<leader>ca` | Excute a code action |
 | `<leader>cs` | Lists LSP references for word under the cursor |
 | `<leader>cg` | Goto the definition of the type of the word under the cursor |
 | `<leader>cc` | Lists LSP incoming calls for word under the cursor |
