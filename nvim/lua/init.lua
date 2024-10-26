@@ -131,6 +131,7 @@ Plug(
   { ["do"] = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release" }
 )
 Plug("nvim-telescope/telescope-ui-select.nvim")
+Plug("brookhong/telescope-pathogen.nvim")
 Plug("preservim/tagbar")
 Plug("ayuanx/vim-mark-standalone")
 Plug("mfussenegger/nvim-lint")
@@ -504,11 +505,16 @@ require("telescope").setup({
     ["ui-select"] = {
       require("telescope.themes").get_dropdown(),
     },
+    ["pathogen"] = {
+      use_last_search_for_live_grep = false,
+      prompt_prefix_length = 50,
+    },
   },
 })
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension("ui-select")
+require("telescope").load_extension("pathogen")
 
 -- require("nvim-tree").setup({
 vim.cmd("let g:mwDefaultHighlightingPalette = 'maximum'")
@@ -596,13 +602,13 @@ local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
 vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
 -- Lists files in your current working directory, respects .gitignore
-vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[F]ind [F]iles" })
+vim.keymap.set("n", "<leader>ff", ":Telescope pathogen find_files<CR>", { desc = "[F]ind [F]iles" })
 -- Execute File browser
 vim.keymap.set("n", "<leader>fb", "<Cmd>Telescope file_browser<CR>", { desc = "Open [F]ile[B]rowers" })
 -- Search for a string in your current working directory and get results live as you type
-vim.keymap.set("n", "<leader>lg", builtin.live_grep, { desc = "[L]ive [G]rep" })
+vim.keymap.set("n", "<leader>lg", ":Telescope pathogen live_grep<CR>", { desc = "[L]ive [G]rep" })
 -- Searches for the string under your cursor or selection in your current working directory
-vim.keymap.set("n", "<leader>ct", builtin.grep_string, { desc = "Grep string" })
+vim.keymap.set("n", "<leader>ct", ":Telescope pathogen grep_string<CR>", { desc = "Grep string" })
 -- Lists LSP references for word under the cursor
 vim.keymap.set("n", "<leader>cs", builtin.lsp_references, { desc = "List LSP references" })
 -- Lists LSP incoming calls for word under the cursor
