@@ -15,7 +15,13 @@ up Neovim, providing a basic platform to foster your own setting.
 
 ## Features
 
-* LSP support that provides much better experience than cscope and ctag.
+* LSP support that provides:
+  - Jump-to-definition, find-references and more powered by Telescope.  
+  - Static analysis
+    ![diagnostic_hover](./.img/diagnostic_hover.png)
+  - Auto completion
+    ![autocompletion](./.img/autocompletion.png)
+  - Linting and formatting
 
 * Better highlighting
 
@@ -27,14 +33,6 @@ up Neovim, providing a basic platform to foster your own setting.
 
   ![git_integration](./.img/git_integration.png)
 
-* Static analysis
-
-  ![diagnostic_hover](./.img/diagnostic_hover.png)
-
-* Auto completion
-
-  ![autocompletion](./.img/autocompletion.png)
-
 * Highlight marker
 
   ![marker](./.img/marker.png)
@@ -43,6 +41,8 @@ up Neovim, providing a basic platform to foster your own setting.
 
   ![yank](./.img/yank.gif)
 
+* Markview that enriches markdown previews
+  ![markview](./.img/markview.png)
 
 
 
