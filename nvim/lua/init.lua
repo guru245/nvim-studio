@@ -341,10 +341,18 @@ require("conform").setup({
     python = { "autopep8" },
     c = { "clang-format" },
     cpp = { "clang-format" },
+    sh = { "shfmt" },
     ["*"] = { "trim_whitespace" },
+  },
+  formatters = {
+    shfmt = {
+      prepend_args = { "-i", "4" },
+    },
   },
   default_format_opts = {
     lsp_format = "never",
+    async = false, -- not recommended to change
+    quiet = false, -- not recommended to change
   },
 })
 vim.api.nvim_create_user_command("Format", function(args)
