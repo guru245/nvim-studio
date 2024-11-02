@@ -142,7 +142,7 @@ sudo apt install ninja-build gettext cmake unzip curl build-essential
 cd ~/.local/src
 git clone https://github.com/neovim/neovim
 cd neovim
-git checkout tags/v0.10.1
+git checkout tags/v0.10.2
 make distclean <- if necessary
 make deps <- if necessary
 make CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=${HOME}/.local" CMAKE_BUILD_TYPE=Release
