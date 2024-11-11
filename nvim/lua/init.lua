@@ -143,7 +143,7 @@ Plug("echasnovski/mini.icons")
 Plug("brenoprata10/nvim-highlight-colors")
 Plug("nvim-treesitter/nvim-treesitter-context")
 Plug("OXY2DEV/markview.nvim")
-Plug("tpope/vim-sleuth")
+Plug("nmac427/guess-indent.nvim")
 
 -- All of your Plugins must be added before the following line
 -- :PlugInstall to install the plugins
@@ -570,6 +570,9 @@ require("treesitter-context").setup({
   max_lines = 3,
   trim_scope = "inner",
 })
+
+-- Plug("nmac427/guess-indent.nvim")
+require("guess-indent").setup({})
 
 -----------------------
 -- Mappings
