@@ -72,7 +72,7 @@ is running in the following environments:
    sudo apt install ssh keychain make cmake python3-cryptography \
    clang-format automake autoconf pkg-config python3-pip clang \ 
    libtool-bin npm curl build-essential unzip gettext ninja-build \
-   clang-tidy
+   clang-tidy yacc libevent-dev bison libncurses-dev
    ```
 
 2. Install [universal-ctags](https://github.com/universal-ctags/ctags)
