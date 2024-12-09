@@ -159,7 +159,7 @@ cd ~/.local/src
 git clone https://github.com/guru245/nvim-studio.git
 cd
 mkdir .config
-ln -s ~/.local/src/nvim-studio/nvim ~/.config/nvim/
+ln -s ~/.local/src/nvim-studio/nvim ~/.config/
 nvim <- Ignore some errors on the first run. It will disappear in the next run.
 ```
 
