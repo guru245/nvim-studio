@@ -580,7 +580,7 @@ require("guess-indent").setup({})
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set("n", "<Esc>", "<Cmd>MarkClear<CR><Cmd>noh<CR>", { desc = "Clear highlights" })
 
--- Move source codes by tab size. Tab is right move and Shift+tab is left.
+-- Move source code by tab size. Tab is right move and Shift+tab is left.
 vim.keymap.set("v", "<Tab>", ">gv")
 vim.keymap.set("v", "<S-Tab>", "<gv")
 

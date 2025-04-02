@@ -9,14 +9,6 @@ au BufReadPost *
 set colorcolumn=100
 let &colorcolumn="80,".join(range(100,100),",")
 
-
-" Toggle paste option. This is useful if you want to cut or copy some text
-" from one window and paste it in Vim. Don't forget to toggle paste again once
-" you're done with pasting.
-map <leader>p :set invpaste paste?<CR>
-set pastetoggle=<leader>p
-
-
 " Install vim-plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
