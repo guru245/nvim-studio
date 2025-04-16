@@ -78,6 +78,13 @@ vim.opt.scrolloff = 10
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
 
+-- Enable break indent
+vim.opt.breakindent = true
+
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
+
 -----------------------
 -- Search Options
 -----------------------
