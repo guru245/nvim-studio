@@ -82,8 +82,9 @@ vim.opt.inccommand = "split"
 vim.opt.breakindent = true
 
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
+vim.opt.winborder = "rounded"
 
 -----------------------
 -- Search Options
@@ -280,19 +281,14 @@ vim.api.nvim_create_autocmd("User", {
   end,
 })
 
--- vim.diagnostic.disable()
+-- vim.diagnostic.enable(false)
 -- Add border to the diagnostic popup window
 vim.diagnostic.config({
   virtual_text = {
     --prefix = '■ ', -- Could be '●', '▎', 'x', '■', , 
   },
-  float = { border = border },
+  jump = { float = true },
 })
-local handlers = {
-  ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
-  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
-}
-require("lspconfig.ui.windows").default_options.border = border
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
@@ -306,8 +302,6 @@ local servers = {
 local lspconfig = require("lspconfig")
 local on_attach = function(_, _)
   print("LSP started.")
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-
   -- Execute a code action, usually your cursor needs to be on top of an error
   -- or a suggestion from your LSP for this to activate.
   vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
@@ -316,14 +310,12 @@ for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup({
     on_attach = on_attach,
     capabilities = capabilities,
-    handlers = handlers,
     --root_dir = lspconfig.util.root_pattern('.git', vim.fn.getcwd()),
   })
 end
 lspconfig["efm"].setup({
   on_attach = on_attach,
   capabilities = capabilities,
-  handlers = handlers,
   filetypes = { "sh" },
 
   --root_dir = lspconfig.util.root_pattern('.git', vim.fn.getcwd()),
