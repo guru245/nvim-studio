@@ -287,11 +287,19 @@ Telescope helps you navigate the code. To perform telescope searching, refer to 
 | `<leader>ff` | Lists files in your current working directory, respects .gitignore |
 | `<leader>fb` | Open Telescope file browser |
 | `<leader>lg` | Search for a string in your current working directory and get results live as you type |
-| `<leader>ca` | Excute a code action |
-| `<leader>cs` | Lists LSP references for word under the cursor |
-| `<leader>cg` | Goto the definition of the type of the word under the cursor |
 | `<leader>cc` | Lists LSP incoming calls for word under the cursor |
 | `<leader>ct` | Searches for the string under your cursor or selection in your current working directory |
+| `grn` | Rename the variable under your cursor
+| `gra` | Excute a code action |
+| `grr` | Find references for the word under your cursor |
+| `gri` | Jump to the implementation of the word under your cursor |
+| `grd` | Goto the definition of the type of the word under the cursor |
+| `grD` | Goto the declaration, e.g., in C this would take you to the header |
+| `gO` | Find all the symbols in your current document |
+| `grt` | Jump to the type of the word under your cursor |
+
+FYI, the keymaps starting with g are default mapping introduced in neovim
+v0.11.0.
 
 For the file browser mappings, see [here](https://github.com/nvim-telescope/telescope-file-browser.nvim?tab=readme-ov-file#mappings). 
 Note that `goto_parent_dir` is mapped to `u` due to the conflict between
