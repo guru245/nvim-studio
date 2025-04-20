@@ -282,16 +282,34 @@ vim.api.nvim_create_autocmd("User", {
 })
 
 -- vim.diagnostic.enable(false)
--- Add border to the diagnostic popup window
 vim.diagnostic.config({
-  virtual_text = {
-    --prefix = '■ ', -- Could be '●', '▎', 'x', '■', , 
+  jump = { float = true, wrap = false },
+  severity_sort = true,
+  float = { source = "if_many" },
+  underline = { severity = vim.diagnostic.severity.ERROR },
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "󰅚 ",
+      [vim.diagnostic.severity.WARN] = "󰀪 ",
+      [vim.diagnostic.severity.INFO] = "󰋽 ",
+      [vim.diagnostic.severity.HINT] = "󰌶 ",
+    },
   },
-  jump = {
-    float = true,
-    wrap = false,
+  virtual_text = {
+    source = "if_many",
+    spacing = 2,
+    format = function(diagnostic)
+      local diagnostic_message = {
+        [vim.diagnostic.severity.ERROR] = diagnostic.message,
+        [vim.diagnostic.severity.WARN] = diagnostic.message,
+        [vim.diagnostic.severity.INFO] = diagnostic.message,
+        [vim.diagnostic.severity.HINT] = diagnostic.message,
+      }
+      return diagnostic_message[diagnostic.severity]
+    end,
   },
 })
+
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
@@ -305,6 +323,7 @@ local servers = {
 local lspconfig = require("lspconfig")
 local on_attach = function(_, _)
   print("LSP started.")
+
   -- Execute a code action, usually your cursor needs to be on top of an error
   -- or a suggestion from your LSP for this to activate.
   vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
