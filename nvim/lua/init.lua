@@ -287,7 +287,10 @@ vim.diagnostic.config({
   virtual_text = {
     --prefix = '■ ', -- Could be '●', '▎', 'x', '■', , 
   },
-  jump = { float = true },
+  jump = {
+    float = true,
+    wrap = false,
+  },
 })
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
