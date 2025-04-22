@@ -227,10 +227,6 @@ local servers = {
 
 * `[d` and `]d`: Prev/Next diagnostic message.
 
-* `<C-W>d`: `vim.diagnostic.open_float()`
-
-  ![diagnostic_hover](./.img/diagnostic_hover.png)
-
 
 
 ## Tmux Usage
@@ -298,7 +294,7 @@ Telescope helps you navigate the code. To perform telescope searching, refer to 
 | `gO` | Find all the symbols in your current document |
 | `grt` | Jump to the type of the word under your cursor |
 
-FYI, the keymaps starting with g are default mapping introduced in neovim
+FYI, the keymaps starting with `g` are default mappings introduced in neovim
 v0.11.0.
 
 For the file browser mappings, see [here](https://github.com/nvim-telescope/telescope-file-browser.nvim?tab=readme-ov-file#mappings). 
