@@ -1,4 +1,13 @@
 # NVIM Studio
+> [!Warning]
+> I decided to archive this repository and to use a new base using kickstart
+> here:
+> [https://github.com/guru245/kickstart.nvim](https://github.com/guru245/kickstart.nvim)
+>
+> The functionality is the same, but the it's way more convenient when you
+> install and maintain all the plugins. I recommend that you use the new base.
+
+-----
 
 If you are a VS Code user, I won’t say anything. However, if you are a Vim
 user, you must use Neovim. The reason is that Neovim provides better plugins,
